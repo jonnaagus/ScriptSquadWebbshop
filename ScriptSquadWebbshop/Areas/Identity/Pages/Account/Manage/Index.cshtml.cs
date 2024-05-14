@@ -59,10 +59,19 @@ namespace ScriptSquadWebbshop.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+            [Required]
             [Display(Name = "First Name")]
             public string FirstName { get; set; }
+            [Required]
             [Display(Name = "Last Name")]
             public string LastName { get; set; }
+            [Required]
+            public string Address { get; set; }
+            [Required]
+            public string City { get; set; }
+            [Required]
+            [Display(Name = "Zip code")]
+            public int ZipCode { get; set; }
         }
 
         private async Task LoadAsync(User user)
@@ -78,6 +87,9 @@ namespace ScriptSquadWebbshop.Areas.Identity.Pages.Account.Manage
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
+                Address = user.Address,
+                City = user.City,
+                ZipCode = user.ZipCode
             };
         }
 
@@ -123,6 +135,10 @@ namespace ScriptSquadWebbshop.Areas.Identity.Pages.Account.Manage
             //TODO ADD THE OTHERS AND SET REQUIRED
             user.FirstName = Input.FirstName;
             user.LastName = Input.LastName;
+            user.Address = Input.Address;
+            user.City = Input.City;
+            user.ZipCode = Input.ZipCode;
+
             await _userManager.UpdateAsync(user);
 
             await _signInManager.RefreshSignInAsync(user);
