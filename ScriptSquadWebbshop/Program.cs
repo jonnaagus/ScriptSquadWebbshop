@@ -22,6 +22,7 @@ namespace ScriptSquadWebbshop
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddIdentity<User, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddDefaultUI()
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
