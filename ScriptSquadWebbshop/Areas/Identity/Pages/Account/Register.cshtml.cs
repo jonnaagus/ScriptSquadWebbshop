@@ -169,7 +169,16 @@ namespace ScriptSquadWebbshop.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    //add user to choosen role, if none is choosen add user to customer role
                     _logger.LogInformation("User created a new account with password.");
+                    if (!string.IsNullOrEmpty(Input.Role))
+                    {
+                        await _userManager.AddToRoleAsync(user, Input.Role);
+                    }
+                    else
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                    }
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
