@@ -16,6 +16,15 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.FkUserId)
         </dd>
+        <dt class="col-sm-2">
+            <h2>Products</h2>
+            @foreach(var productOrder in Model.ProductOrders)
+            {
+                <p>@productOrder.Product.ProductName</p>
+                <p>@productOrder.Amount st</p>
+                <p>@productOrder.Product.Price kr</p>
+            }
+        </dt>
     </dl>
 </div>
 <div>

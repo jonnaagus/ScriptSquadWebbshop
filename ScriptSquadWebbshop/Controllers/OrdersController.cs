@@ -22,6 +22,8 @@ namespace ScriptSquadWebbshop.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
+            
+
             return View(await _context.Order.ToListAsync());
         }
 
@@ -33,7 +35,7 @@ namespace ScriptSquadWebbshop.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order
+            var order = await _context.Order.Include(o => o.ProductOrders).ThenInclude(po => po.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {

@@ -8,7 +8,8 @@ namespace ScriptSquadWebbshop.Models
         [Key]
         public int OrderId { get; set; }
         [ForeignKey("User")]
-        public int FkUserId { get; set; }
+        public string FkUserId { get; set; }
+        public List<ProductOrder> ProductOrders { get; set; }
       
     }
 }
