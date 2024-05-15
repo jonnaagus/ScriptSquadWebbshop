@@ -120,7 +120,7 @@ namespace ScriptSquadWebbshop.Areas.Identity.Pages.Account
             [Required]
             public int ZipCode { get; set; }
             [Required]
-            public int PhoneNumber { get; set; }
+            public string PhoneNumber { get; set; }
 
             public string? Role { get; set; }
             [ValidateNever]
