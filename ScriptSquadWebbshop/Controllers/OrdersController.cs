@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ScriptSquadWebbshop.Data;
 using ScriptSquadWebbshop.Models;
+using ScriptSquadWebbshop.Utility;
 
 namespace ScriptSquadWebbshop.Controllers
 {
+    [Authorize(Roles = SD.Role_Admin)]
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -35,7 +38,7 @@ namespace ScriptSquadWebbshop.Controllers
                 return NotFound();
             }
 
-            var order = await _context.Order.Include(o => o.ProductOrders).ThenInclude(po => po.Product)
+            var order = await _context.Order.Include(u => u.User).Include(o => o.ProductOrders).ThenInclude(po => po.Product)
                 .FirstOrDefaultAsync(m => m.OrderId == id);
             if (order == null)
             {

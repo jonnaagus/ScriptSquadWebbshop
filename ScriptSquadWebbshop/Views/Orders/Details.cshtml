@@ -11,15 +11,45 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.FkUserId)
+            Order Id
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.FkUserId)
+            @Model.OrderId
         </dd>
+        <dt class="col-sm-2">
+            Name
+        </dt>
+        <dd class="col-sm-10">
+            @Model.User.FirstName @Model.User.LastName
+        </dd>
+         <dt class="col-sm-2">
+            Address
+        </dt>
+        <dd class="col-sm-10">
+            @Model.User.Address
+        </dd>
+         <dt class="col-sm-2">
+            City
+        </dt>
+        <dd class="col-sm-10">
+            @Model.User.City
+        </dd>
+         <dt class="col-sm-2">
+            Zip Code
+        </dt>
+        <dd class="col-sm-10">
+            @Model.User.ZipCode
+        </dd>
+    </dl>
         
-        <tbody>
-    
             <h2>Products</h2>
+            <table class="table">
+        <tbody>
+            <thead>
+            <th>Product</th>
+            <th>Amount</th>
+            <th>Price</th>
+            </thead>
             @{
                 float totalPrice = 0;
             }
@@ -27,16 +57,17 @@
             {
                 var subtotal = productOrder.Product.Price * productOrder.Amount;
                 totalPrice += subtotal;
+                <tr>
                 <td>@productOrder.Product.ProductName</td>
                 <td>@productOrder.Amount st</td>
                 <td>@productOrder.Product.Price kr/st</td>
+                </tr>
             }
             <tr>
-                <td colspan="3" class="text-right"><strong>Total Price:</strong></td>
-                <td><strong>@totalPrice.ToString("C")</strong></td>
+                <td colspan="3" class="text-right"><strong>Total Price: @totalPrice.ToString("C")</strong></td>
             </tr>
         </tbody>
-    </dl>
+        </table>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.OrderId">Edit</a> |
