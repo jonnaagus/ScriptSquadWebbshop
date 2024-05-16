@@ -1,12 +1,135 @@
-﻿@model ScriptSquadWebbshop.Models.WeatherApiResponse
+﻿@* weather codes
+0	Clear sky
+1, 2, 3	Mainly clear, partly cloudy, and overcast
+45, 48	Fog and depositing rime fog
+51, 53, 55	Drizzle: Light, moderate, and dense intensity
+56, 57	Freezing Drizzle: Light and dense intensity
+61, 63, 65	Rain: Slight, moderate and heavy intensity
+66, 67	Freezing Rain: Light and heavy intensity
+71, 73, 75	Snow fall: Slight, moderate, and heavy intensity
+77	Snow grains
+80, 81, 82	Rain showers: Slight, moderate, and violent
+85, 86	Snow showers slight and heavy
+95 *	Thunderstorm: Slight or moderate
+96, 99 *	Thunderstorm with slight and heavy hail
+ *@
 
-<h1>Weather Data</h1>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+
+<script>
+    @{
+        int clear = 0;
+        int cloudy = 0;
+        int fog = 0;
+        int drizzle = 0;
+        int freezingDrizzle = 0;
+        int rain = 0;
+        int freezingRain = 0;
+        int snowFall = 0;
+        int snowGrains = 0;
+        int rainShowers = 0;
+        int snowShowers = 0;
+        int thunderstorm = 0;
+
+        foreach (var code in ViewBag.Weather)
+        {
+            switch (code)
+            {
+                case 0:
+                    clear++;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    cloudy++;
+                    break;
+                case 45:
+                case 48:
+                    fog++;
+                    break;
+                case 51:
+                case 53:
+                case 55:
+                    drizzle++;
+                    break;
+                case 56:
+                case 57:
+                    freezingDrizzle++;
+                    break;
+                case 61:
+                case 63:
+                case 65:
+                    rain++;
+                    break;
+                case 66:
+                case 67:
+                    freezingRain++;
+                    break;
+                case 71:
+                case 73:
+                case 75:
+                    snowFall++;
+                    break;
+                case 77:
+                    snowGrains++;
+                    break;
+                case 80:
+                case 81:
+                case 82:
+                    rainShowers++;
+                    break;
+                case 85:
+                case 86:
+                    snowShowers++;
+                    break;
+                case 95:
+                case 96:
+                case 99:
+                thunderstorm:
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
 
 
-@for(int i = 0; i < Model.Time.Count; i++)
-{
-    <div>
-        <p>Date:@Model.Time[i]</p>
-        <p>Weather Code:@Model.WeatherCode[i]</p>
-    </div>
-}
+
+        const xValues = ["Clear sky", "Cloudy", "fog", "Drizzle", "Freezing Drizzle", "Rain", "Freezing Rain", "Snow fall", "Snow grains", "Rain showers", "Snow showers", "Thunderstorm"];
+    var yValues = [@clear, @cloudy, @fog, @drizzle, @freezingDrizzle, @rain, @freezingRain, @snowFall, @snowGrains, @rainShowers, @snowShowers, @thunderstorm];
+    const barColors = [
+        "#b91d47",
+        "#00aba9",
+        "#2b5797",
+        "#e8c3b9",
+        "#1e7145",
+        "#9d6884",
+        "#8cd899",
+        "#5c2934",
+        "#1eea15",
+        "#4669da",
+        "#4035c2",
+        "#315c8d"
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Weather during orders placed"
+            }
+        }
+    });
+</script>
+

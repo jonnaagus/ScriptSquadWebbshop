@@ -16,10 +16,12 @@ namespace ScriptSquadWebbshop.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ApiService _apiService;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context, ApiService apiService)
         {
             _context = context;
+            _apiService = apiService;
         }
 
         // GET: Orders
@@ -157,6 +159,36 @@ namespace ScriptSquadWebbshop.Controllers
         private bool OrderExists(int id)
         {
             return _context.Order.Any(e => e.OrderId == id);
+        }
+
+        // GET: Weather statistics
+        public async Task<IActionResult> Weather()
+        {
+            //get dates orders are placed
+            List<Order> orders = await _context.Order.ToListAsync();
+            List<DateOnly> dates = new List<DateOnly>();
+            foreach (var order in orders) 
+            {
+                dates.Add(DateOnly.FromDateTime(order.OrderDate));
+            }
+            //get weather data
+            var apiUrl = "https://archive-api.open-meteo.com/v1/archive?latitude=62&longitude=15&end_date=2024-05-05&daily=weather_code&timezone=auto&start_date=2024-04-16";
+            var apiData = await _apiService.GetApiDataAsync(apiUrl);
+
+            List<int> weather = new List<int>();
+            //get weather data for order dates
+            for (int i = 0; i < apiData.Time.Count; i++)
+            {
+                foreach (var date in dates)
+                {
+                    if(date.ToString() == apiData.Time[i])
+                    {
+                        weather.Add(apiData.WeatherCode[i]);
+                    }
+                }
+            }
+            ViewBag.Weather = weather;
+            return View();
         }
     }
 }
