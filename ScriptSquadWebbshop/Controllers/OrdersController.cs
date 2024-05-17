@@ -166,30 +166,27 @@ namespace ScriptSquadWebbshop.Controllers
         {
             //get dates orders are placed
             List<Order> orders = await _context.Order.ToListAsync();
+
+            //change dateTime to dateOnly
             List<DateOnly> dates = new List<DateOnly>();
             foreach (var order in orders) 
             {
                 dates.Add(DateOnly.FromDateTime(order.OrderDate));
             }
+
             //get weather data
             var apiUrl = "https://archive-api.open-meteo.com/v1/archive?latitude=62&longitude=15&end_date=2024-05-05&daily=weather_code&timezone=auto&start_date=2024-04-16";
             var apiData = await _apiService.GetApiDataAsync(apiUrl);
 
             List<int> weather = new List<int>();
-            //get weather data for order dates
-            //go thorug each date from the Api
-            for (int i = 0; i < apiData.Time.Count; i++)
+
+            //loop each order date and get weather code
+            foreach (var date in dates)
             {
-                //check each orderdate
-                foreach (var date in dates)
-                {
-                    //if orderdate matches date from API add weahtercode to list
-                    if(date.ToString() == apiData.Time[i])
-                    {
-                        weather.Add(apiData.WeatherCode[i]);
-                    }
-                }
+                apiData.WeatherDictionary.TryGetValue(date.ToString(), out int weathercode);
+                weather.Add(weathercode);
             }
+
             //adds weathercodes to viewbag
             ViewBag.Weather = weather;
             return View();

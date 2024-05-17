@@ -20,10 +20,21 @@ namespace ScriptSquadWebbshop.Utility
             var jsonResponse = await respone.Content.ReadAsStringAsync();
             var jsonObject = JObject.Parse(jsonResponse);
 
+            //get dates and codes from Json
+            var time = jsonObject["daily"]["time"].ToObject<List<string>>();;
+            var codes = jsonObject["daily"]["weather_code"].ToObject<List<int>>();
+
+            Dictionary<string, int> data = new Dictionary<string, int>();
+            //place dates and codes in dictionary
+            for (int i = 0; i < time.Count; i++)
+            {
+                data[time[i]] = codes[i];
+            }
+
             var weatherApiResponse = new WeatherApiResponse
             {
-                Time = jsonObject["daily"]["time"].ToObject<List<string>>(),
-                WeatherCode = jsonObject["daily"]["weather_code"].ToObject<List<int>>()
+                WeatherDictionary = data
+                
             };
 
             return weatherApiResponse;

@@ -2,7 +2,7 @@
 {
     public class WeatherApiResponse
     {
-        public List<string> Time { get; set; }
-        public List<int> WeatherCode { get; set; }
+        public Dictionary<string,int> WeatherDictionary{ get; set; }
+
     }
 }
