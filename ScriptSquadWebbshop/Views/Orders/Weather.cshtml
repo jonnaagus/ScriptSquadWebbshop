@@ -20,6 +20,7 @@
 
 <script>
     @{
+        //weather
         int clear = 0;
         int cloudy = 0;
         int fog = 0;
@@ -33,6 +34,7 @@
         int snowShowers = 0;
         int thunderstorm = 0;
 
+        // add one to weather based on weather code
         foreach (var code in ViewBag.Weather)
         {
             switch (code)
@@ -87,7 +89,7 @@
                 case 95:
                 case 96:
                 case 99:
-                thunderstorm:
+                    thunderstorm++;
                     break;
 
                 default:
@@ -97,7 +99,9 @@
     }
 
 
-
+    //xValues contains the name of the variable
+    //yValues contains how many orders were placed during that weather
+    //barColors chooses color on pie pieces
         const xValues = ["Clear sky", "Cloudy", "fog", "Drizzle", "Freezing Drizzle", "Rain", "Freezing Rain", "Snow fall", "Snow grains", "Rain showers", "Snow showers", "Thunderstorm"];
     var yValues = [@clear, @cloudy, @fog, @drizzle, @freezingDrizzle, @rain, @freezingRain, @snowFall, @snowGrains, @rainShowers, @snowShowers, @thunderstorm];
     const barColors = [

@@ -177,16 +177,20 @@ namespace ScriptSquadWebbshop.Controllers
 
             List<int> weather = new List<int>();
             //get weather data for order dates
+            //go thorug each date from the Api
             for (int i = 0; i < apiData.Time.Count; i++)
             {
+                //check each orderdate
                 foreach (var date in dates)
                 {
+                    //if orderdate matches date from API add weahtercode to list
                     if(date.ToString() == apiData.Time[i])
                     {
                         weather.Add(apiData.WeatherCode[i]);
                     }
                 }
             }
+            //adds weathercodes to viewbag
             ViewBag.Weather = weather;
             return View();
         }
