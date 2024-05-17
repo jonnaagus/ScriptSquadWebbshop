@@ -12,7 +12,7 @@ namespace ScriptSquadWebbshop.Utility
             _client = clientFactory.CreateClient("API Client");
         }
 
-        public async Task<WeatherApiResponse> GetApiDataAsync(string url)
+        public async Task<Dictionary<string, int>> GetApiDataAsync(string url)
         {
             var respone = await _client.GetAsync(url);
             respone.EnsureSuccessStatusCode();
@@ -30,14 +30,9 @@ namespace ScriptSquadWebbshop.Utility
             {
                 data[time[i]] = codes[i];
             }
+           
 
-            var weatherApiResponse = new WeatherApiResponse
-            {
-                WeatherDictionary = data
-                
-            };
-
-            return weatherApiResponse;
+            return data;
         }
 
        

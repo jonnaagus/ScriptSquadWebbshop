@@ -183,7 +183,7 @@ namespace ScriptSquadWebbshop.Controllers
             //loop each order date and get weather code
             foreach (var date in dates)
             {
-                apiData.WeatherDictionary.TryGetValue(date.ToString(), out int weathercode);
+                apiData.TryGetValue(date.ToString(), out int weathercode);
                 weather.Add(weathercode);
             }
 
