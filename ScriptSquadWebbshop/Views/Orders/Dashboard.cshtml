@@ -1,4 +1,6 @@
-﻿@* weather codes
+﻿@model ScriptSquadWebbshop.Models.Product
+
+@* weather codes
 0	Clear sky
 1, 2, 3	Mainly clear, partly cloudy, and overcast
 45, 48	Fog and depositing rime fog
@@ -16,8 +18,10 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
+<h2>Weather statistics</h2>
+@* canvas for weather piechart *@
 <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
-
+@* piechart script *@
 <script>
     @{
         //weather
@@ -99,10 +103,10 @@
     }
 
 
-    //xValues contains the name of the variable
-    //yValues contains how many orders were placed during that weather
-    //barColors chooses color on pie pieces
-        const xValues = ["Clear sky", "Cloudy", "fog", "Drizzle", "Freezing Drizzle", "Rain", "Freezing Rain", "Snow fall", "Snow grains", "Rain showers", "Snow showers", "Thunderstorm"];
+        //xValues contains the name of the variable
+        //yValues contains how many orders were placed during that weather
+        //barColors chooses color on pie pieces
+            const xValues = ["Clear sky", "Cloudy", "fog", "Drizzle", "Freezing Drizzle", "Rain", "Freezing Rain", "Snow fall", "Snow grains", "Rain showers", "Snow showers", "Thunderstorm"];
     var yValues = [@clear, @cloudy, @fog, @drizzle, @freezingDrizzle, @rain, @freezingRain, @snowFall, @snowGrains, @rainShowers, @snowShowers, @thunderstorm];
     const barColors = [
         "#b91d47",
@@ -136,4 +140,67 @@
         }
     });
 </script>
+
+
+@* low in stock table *@
+<table class="table">
+    <thead>
+        <h2>Low in stock products</h2>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            List<Product> lowStock = ViewBag.LowStock;
+            if (lowStock.Count <= 0)
+            {
+                <tr><td>No Low in stock products</td></tr>
+            }
+            else
+            {
+                foreach (Product product in ViewBag.LowStock)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+
+</table>
+
+<table class="table">
+    <thead>
+        <h2>daily order summary</h2>
+        <tr>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                OrderCount
+            </th>
+            <th>
+                Total Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(DailySummaryViewModel sum in ViewBag.Summary)
+        {
+            <tr>
+                <td>@sum.OrderDate</td>
+                <td>@sum.Ordercount</td>
+                <td>@sum.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
 

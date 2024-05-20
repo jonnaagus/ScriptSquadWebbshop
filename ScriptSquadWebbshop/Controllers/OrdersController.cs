@@ -27,7 +27,7 @@ namespace ScriptSquadWebbshop.Controllers
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            
+
 
             return View(await _context.Order.ToListAsync());
         }
@@ -162,14 +162,14 @@ namespace ScriptSquadWebbshop.Controllers
         }
 
         // GET: Weather statistics
-        public async Task<IActionResult> Weather()
+        public async Task<IActionResult> Dashboard()
         {
             //get dates orders are placed
             List<Order> orders = await _context.Order.ToListAsync();
 
             //change dateTime to dateOnly
             List<DateOnly> dates = new List<DateOnly>();
-            foreach (var order in orders) 
+            foreach (var order in orders)
             {
                 dates.Add(DateOnly.FromDateTime(order.OrderDate));
             }
@@ -189,6 +189,47 @@ namespace ScriptSquadWebbshop.Controllers
 
             //adds weathercodes to viewbag
             ViewBag.Weather = weather;
+
+
+            //Get products where stock is less than 5
+            var products = await _context.Procuct.Where(p => p.Quantity < 5).ToListAsync();
+            ViewBag.LowStock = products;
+
+
+            //daily summary
+            //var summary = _context.Order
+            //    .GroupBy(o => o.OrderDate.Date)
+            //    .Select(s => new DailySummaryViewModel
+            //    {
+            //        OrderDate = s.Key,
+            //        Ordercount = s.Count(),
+
+            //        TotalPrice = s.
+            //    })
+            //    .OrderBy(ds => ds.OrderDate)
+            //    .ToList();
+
+
+            var summary = _context.Order
+            .SelectMany(o => o.ProductOrders, (o, po) => new
+            {
+                o.OrderDate,
+                po.Product.Price,
+                po.Amount
+            })
+            .GroupBy(x => x.OrderDate.Date)
+            .Select(g => new DailySummaryViewModel
+            {
+                OrderDate = g.Key,
+                Ordercount = g.Count(),
+                TotalPrice = g.Sum(x => x.Price * x.Amount)
+            })
+            .OrderBy(ds => ds.OrderDate)
+            .ToList();
+
+
+            ViewBag.Summary = summary;
+
             return View();
         }
     }
