@@ -197,36 +197,17 @@ namespace ScriptSquadWebbshop.Controllers
 
 
             //daily summary
-            //var summary = _context.Order
-            //    .GroupBy(o => o.OrderDate.Date)
-            //    .Select(s => new DailySummaryViewModel
-            //    {
-            //        OrderDate = s.Key,
-            //        Ordercount = s.Count(),
-
-            //        TotalPrice = s.
-            //    })
-            //    .OrderBy(ds => ds.OrderDate)
-            //    .ToList();
-
-
             var summary = _context.Order
-            .SelectMany(o => o.ProductOrders, (o, po) => new
-            {
-                o.OrderDate,
-                po.Product.Price,
-                po.Amount
-            })
-            .GroupBy(x => x.OrderDate.Date)
-            .Select(g => new DailySummaryViewModel
-            {
-                OrderDate = g.Key,
-                Ordercount = g.Count(),
-                TotalPrice = g.Sum(x => x.Price * x.Amount)
-            })
-            .OrderBy(ds => ds.OrderDate)
-            .ToList();
+                .GroupBy(o => o.OrderDate.Date)
+                .Select(s => new DailySummaryViewModel
+                {
+                    OrderDate = s.Key,
+                    Ordercount = s.Count(),
 
+                    TotalPrice = s.SelectMany(o => o.ProductOrders).Sum(po => po.Product.Price * po.Amount)
+                })
+                .OrderBy(ds => ds.OrderDate)
+                .ToList();
 
             ViewBag.Summary = summary;
 

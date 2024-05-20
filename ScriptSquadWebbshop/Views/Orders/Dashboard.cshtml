@@ -196,7 +196,7 @@
         @foreach(DailySummaryViewModel sum in ViewBag.Summary)
         {
             <tr>
-                <td>@sum.OrderDate</td>
+                <td>@sum.OrderDate.ToShortDateString()</td>
                 <td>@sum.Ordercount</td>
                 <td>@sum.TotalPrice</td>
             </tr>
