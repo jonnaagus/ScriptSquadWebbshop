@@ -175,7 +175,8 @@ namespace ScriptSquadWebbshop.Controllers
             }
 
             //get weather data
-            var apiUrl = "https://archive-api.open-meteo.com/v1/archive?latitude=62&longitude=15&end_date=2024-05-05&daily=weather_code&timezone=auto&start_date=2024-04-16";
+            var apiUrl = $"https://archive-api.open-meteo.com/v1/archive?latitude=62&longitude=15&end_date={DateOnly.FromDateTime(DateTime.Now.AddDays(-1))}&daily=weather_code&timezone=auto&start_date=2024-04-16";
+            Console.WriteLine(apiUrl);
             var apiData = await _apiService.GetApiDataAsync(apiUrl);
 
             List<int> weather = new List<int>();
