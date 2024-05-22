@@ -1,0 +1,25 @@
+﻿@model List<ScriptSquadWebbshop.Models.Product>
+
+@{
+    ViewBag.Title = "Product Page";
+}
+
+<h2>Produkter</h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3 product-card">
+            <div class="thumbnail">
+                <img src="@product.ImageUrl" alt="@product.ProductName" class="img-fixed" />
+                <div class="caption">
+                    <h4>@product.ProductName</h4>
+                    <p><b>Pris:</b> @product.Price.ToString("C", new System.Globalization.CultureInfo("sv-SE"))</p>
+                    <p><b>Lagersaldo:</b> @product.Quantity</p>
+                    <p class="description"><b>Information:</b> @product.Description</p>
+                    <button class="my-custom-button add-to-cart">Lägg till i varukorgen</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

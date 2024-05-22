@@ -1,22 +1,355 @@
+/* Responsiv fontstorlek */
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
+/* Fokusstilar */
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Grundläggande inställningar */
 body {
-  margin-bottom: 60px;
+    font-family: 'Oswald', sans-serif;
+    background-color: #ffffff;
+    margin-bottom: 60px;
 }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Rubrikstilar */
+h1, h2, h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: #000;
+}
+
+h4, h5 {
+    font-family: 'Oswald', sans-serif;
+    color: #000;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.25rem;
+}
+
+p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Anpassad knappstil */
+.custom-btn {
+    background-color: #ffffff !important;
+    border-color: #c48205ce !important;
+    color: #000 !important;
+    box-shadow: #c48205ce !important;
+}
+
+    .custom-btn:hover {
+        background-color: #ffffff !important;
+        border-color: #c48205ce !important;
+        color: #c48205ce !important;
+    }
+
+/* Navbar styling */
+.logo {
+    width: 400px;
+    height: 70px;
+}
+
+.navbar-custom {
+    background-color: #ffffff;
+    color: #000;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+.nav-item {
+    margin-right: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #000;
+}
+
+.nav-item .nav-link:hover {
+    color: #c48205ce; /* Guldig hover-färg */
+}
+
+/* Design Produktsida*/
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Mediaförfrågan för mindre skärmar */
+@media screen and (max-width: 1040px) {
+    .navbar-nav {
+        display: none;
+    }
+
+    .navbar-dropdown {
+        display: block;
+    }
+
+        .navbar-dropdown .dropdown-menu {
+            display: none;
+        }
+
+            .navbar-dropdown .dropdown-menu.show {
+                display: block;
+            }
+}
+
+/* Anpassningar för produktkorten */
+.product-card {
+    position: relative;
+    overflow: hidden;
+    margin: 20px;
+}
+
+    .product-card:hover {
+        border-color: #c48205ce; /* Ändra färg på ramen när man hovrar över produktkortet */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Öka skuggning och lyft lite när man hovrar över produktkortet */
+    }
+
+/* Produktkortens stilar */
+.thumbnail {
+    position: relative;
+    overflow: visible; 
+    margin-bottom: 50px;
+}
+
+
+.thumbnail img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover img {
+    transform: scale(1.1);
+}
+
+.caption {
+    text-align: center;
+    padding: 10px; 
+}
+
+.caption p {
+    margin-bottom: 20px;
+}
+
+.description, .add-to-cart {
+    display: none; /* Dölj beskrivningen och knappen initialt */
+}
+
+.thumbnail:hover .description, .thumbnail:hover .add-to-cart {
+    display: block; /* Visa beskrivningen och knappen vid hovring */
+    margin-bottom: 10px;
+}
+
+.add-to-cart {
+    position: absolute;
+    bottom: -40px; 
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Anpassad knappstil för "Lägg till i varukorgen" */
+.my-custom-button {
+    background-color: #c4820578;
+    border-color: #c48205ce;
+    color: #000;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px 5px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+    .my-custom-button:hover {
+        background-color: #c4820543;
+        border-color: #c48205ce;
+        color: #000;
+        border-radius: 4px;
+    }
+
+/* Anpassad textstorlek för rutorna */
+.product-card p {
+    font-size: 14px; /* Anpassa textstorlek för att få plats med innehållet */
+}
+
+/* Responsivitetsanpassning för produktrutnät */
+@media screen and (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+/* Kontaktinformationens layout */
+.contact-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hitta oss kartans layout */
+iframe {
+    border-radius: 10px;
+}
+
+/* Anpassningar för kontaktinformationen */
+.contact-info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Anpassningar för hitta oss sektionen */
+.map-section {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mediefrågor för responsiv design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .contact-info, .map-section {
+        padding: 15px;
+    }
+
+    h2, h5 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.875rem;
+    }
+}
+
+/* Kundrecensioner */
+.review {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    text-align: center;
+}
+
+    .review blockquote {
+        font-size: 18px;
+    }
+
+    .review footer {
+        font-style: italic;
+        margin-top: 10px;
+    }
+
+/* Justera "karusellen" för recensioner */
+.carousel {
+    margin-bottom: 50px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-item {
+    display: none;
+    text-align: center;
+}
+
+    .carousel-item.active {
+        display: block;
+    }
+
+.carousel-inner {
+    width: 100%;
+}
+
+.carousel-fade .carousel-item {
+    opacity: 0;
+    transition-duration: 1s;
+}
+
+    .carousel-fade .carousel-item.active {
+        opacity: 1;
+    }
+
+/* Prenumerera på nyhetsbrev */
+.news-container {
+    margin-top: 30px;
+}
+
+    .news-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .news-container form {
+        margin-top: 20px;
+    }
+
+/* Kontaktinformationens layout */
+.contact-container {
+    margin-top: 30px;
+}
+
+.contact-info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
