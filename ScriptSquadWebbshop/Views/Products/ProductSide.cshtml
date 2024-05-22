@@ -1,10 +1,16 @@
-﻿@model List<ScriptSquadWebbshop.Models.Product>
+﻿@using ScriptSquadWebbshop.Utility
+@model List<ScriptSquadWebbshop.Models.Product>
 
 @{
     ViewBag.Title = "Product Page";
 }
 
 <h2>Produkter</h2>
+@if (User.IsInRole(SD.Role_Admin))
+{
+    <a asp-action="Create">Create New</a>
+}
+
 
 <div class="row">
     @foreach (var product in Model)
