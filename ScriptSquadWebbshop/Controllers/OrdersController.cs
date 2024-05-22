@@ -16,16 +16,18 @@ namespace ScriptSquadWebbshop.Controllers
     public class OrdersController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly ApiService _apiService;
 
-        public OrdersController(ApplicationDbContext context)
+        public OrdersController(ApplicationDbContext context, ApiService apiService)
         {
             _context = context;
+            _apiService = apiService;
         }
 
         // GET: Orders
         public async Task<IActionResult> Index()
         {
-            
+
 
             return View(await _context.Order.ToListAsync());
         }
@@ -157,6 +159,60 @@ namespace ScriptSquadWebbshop.Controllers
         private bool OrderExists(int id)
         {
             return _context.Order.Any(e => e.OrderId == id);
+        }
+
+        // GET: Weather statistics
+        public async Task<IActionResult> Dashboard()
+        {
+            //get dates orders are placed
+            List<Order> orders = await _context.Order.ToListAsync();
+
+            //change dateTime to dateOnly
+            List<DateOnly> dates = new List<DateOnly>();
+            foreach (var order in orders)
+            {
+                dates.Add(DateOnly.FromDateTime(order.OrderDate));
+            }
+
+            //get weather data
+            var apiUrl = $"https://archive-api.open-meteo.com/v1/archive?latitude=62&longitude=15&end_date={DateOnly.FromDateTime(DateTime.Now.AddDays(-1))}&daily=weather_code&timezone=auto&start_date=2024-04-16";
+            Console.WriteLine(apiUrl);
+            var apiData = await _apiService.GetApiDataAsync(apiUrl);
+
+            List<int> weather = new List<int>();
+
+            //loop each order date and get weather code
+            foreach (var date in dates)
+            {
+                apiData.TryGetValue(date.ToString(), out int weathercode);
+                weather.Add(weathercode);
+            }
+
+            //adds weathercodes to viewbag
+            ViewBag.Weather = weather;
+
+
+            //Get products where stock is less than 5
+            var products = await _context.Procuct.Where(p => p.Quantity < 5).ToListAsync();
+            ViewBag.LowStock = products;
+
+
+            //daily summary
+            var summary = _context.Order
+                .GroupBy(o => o.OrderDate.Date)
+                .Select(s => new DailySummaryViewModel
+                {
+                    OrderDate = s.Key,
+                    Ordercount = s.Count(),
+
+                    TotalPrice = s.SelectMany(o => o.ProductOrders).Sum(po => po.Product.Price * po.Amount)
+                })
+                .OrderBy(ds => ds.OrderDate)
+                .ToList();
+
+            ViewBag.Summary = summary;
+
+            return View();
         }
     }
 }

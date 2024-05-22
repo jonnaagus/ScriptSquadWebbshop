@@ -1,0 +1,192 @@
+﻿@model ScriptSquadWebbshop.Models.Product
+
+@* weather codes
+0	Clear sky
+1, 2, 3	Mainly clear, partly cloudy, and overcast
+45, 48	Fog and depositing rime fog
+51, 53, 55	Drizzle: Light, moderate, and dense intensity
+56, 57	Freezing Drizzle: Light and dense intensity
+61, 63, 65	Rain: Slight, moderate and heavy intensity
+66, 67	Freezing Rain: Light and heavy intensity
+71, 73, 75	Snow fall: Slight, moderate, and heavy intensity
+77	Snow grains
+80, 81, 82	Rain showers: Slight, moderate, and violent
+85, 86	Snow showers slight and heavy
+95 *	Thunderstorm: Slight or moderate
+96, 99 *	Thunderstorm with slight and heavy hail
+ *@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+<h2>Weather statistics</h2>
+@* canvas for weather piechart *@
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+@* piechart script *@
+<script>
+    @{
+        //weather
+        int clear = 0;
+        int cloudy = 0;
+        int fog = 0;
+        int drizzle = 0;
+        int freezingDrizzle = 0;
+        int rain = 0;
+        int freezingRain = 0;
+        int snowFall = 0;
+        int snowGrains = 0;
+        int rainShowers = 0;
+        int snowShowers = 0;
+        int thunderstorm = 0;
+
+        // add one to weather based on weather code
+        foreach (var code in ViewBag.Weather)
+        {
+            switch (code)
+            {
+                case 0:
+                    clear++;
+                    break;
+                case 1:
+                case 2:
+                case 3:
+                    cloudy++;
+                    break;
+                case 45:
+                case 48:
+                    fog++;
+                    break;
+                case 51:
+                case 53:
+                case 55:
+                case 56:
+                case 57:
+                case 61:
+                case 63:
+                case 65:
+                case 66:
+                case 67:
+                    rain++;
+                    break;
+                case 71:
+                case 73:
+                case 75:
+                case 77:
+                    snowFall++;
+                    break;
+                case 80:
+                case 81:
+                case 82:
+                    rain++;
+                    break;
+                case 85:
+                case 86:
+                    snowFall++;
+                    break;
+                case 95:
+                case 96:
+                case 99:
+                    thunderstorm++;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+
+        //xValues contains the name of the variable
+        //yValues contains how many orders were placed during that weather
+        //barColors chooses color on pie pieces
+            const xValues = ["Clear sky", "Cloudy", "fog", "Rain", "Snow fall","Thunderstorm"];
+    var yValues = [@clear, @cloudy, @fog,  @rain,  @snowFall,  @thunderstorm];
+    const barColors = [
+        "#4ad9e0",
+        "#86bf8d",
+        "#858585",
+        "#0f1a8c",
+        "#dcdde8",
+        "#0d0e12",
+    ];
+
+    new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: "Weather during orders placed"
+            }
+        }
+    });
+</script>
+
+
+@* low in stock table *@
+<table class="table">
+    <thead>
+        <h2>Low in stock products</h2>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            List<Product> lowStock = ViewBag.LowStock;
+            if (lowStock.Count <= 0)
+            {
+                <tr><td>No Low in stock products</td></tr>
+            }
+            else
+            {
+                foreach (Product product in ViewBag.LowStock)
+                {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@product.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+
+</table>
+
+<table class="table">
+    <thead>
+        <h2>daily order summary</h2>
+        <tr>
+            <th>
+                OrderDate
+            </th>
+            <th>
+                OrderCount
+            </th>
+            <th>
+                Total Price
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(DailySummaryViewModel sum in ViewBag.Summary)
+        {
+            <tr>
+                <td>@sum.OrderDate.ToShortDateString()</td>
+                <td>@sum.Ordercount</td>
+                <td>@sum.TotalPrice</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

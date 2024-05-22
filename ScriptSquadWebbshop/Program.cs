@@ -13,6 +13,8 @@ namespace ScriptSquadWebbshop
         {
             var builder = WebApplication.CreateBuilder(args);
 
+           
+
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -28,6 +30,12 @@ namespace ScriptSquadWebbshop
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddControllersWithViews();
             builder.Services.AddRazorPages();
+
+            builder.Services.AddHttpClient("API Client", client =>
+            {
+            });
+            builder.Services.AddScoped<ApiService>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
