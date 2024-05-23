@@ -9,11 +9,11 @@ using ScriptSquadWebbshop.Data;
 
 #nullable disable
 
-namespace ScriptSquadWebbshop.Data.Migrations
+namespace ScriptSquadWebbshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520081215_summary")]
-    partial class summary
+    [Migration("20240522233505_createdatabase")]
+    partial class createdatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,6 +192,10 @@ namespace ScriptSquadWebbshop.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -204,7 +208,7 @@ namespace ScriptSquadWebbshop.Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Procuct");
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("ScriptSquadWebbshop.Models.ProductOrder", b =>

@@ -193,7 +193,7 @@ namespace ScriptSquadWebbshop.Controllers
 
 
             //Get products where stock is less than 5
-            var products = await _context.Procuct.Where(p => p.Quantity < 5).ToListAsync();
+            var products = await _context.Product.Where(p => p.Quantity < 5).ToListAsync();
             ViewBag.LowStock = products;
 
 

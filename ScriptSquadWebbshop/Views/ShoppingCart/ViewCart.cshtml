@@ -1,0 +1,25 @@
+﻿@model ShoppingCartViewModel
+<h1>Shopping Cart</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Product</th>
+			<th>Price</th>
+			<th>Quantity</th>
+			<th>Subtotal</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model.CartItems)
+		{
+			<tr>
+				<td>@(item.Product != null ? item.Product.ProductName : "N/A")</td>
+				<td>@(item.Product != null ? item.Product.Price.ToString("C") : "N/A")</td>
+				<td>@item.Quantity</td>
+				<td>@(item.Product != null ? (item.Product.Price * item.Quantity).ToString("C") : "N/A")</td>
+			</tr>
+		}
+	</tbody>
+</table>
