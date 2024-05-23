@@ -27,6 +27,7 @@ namespace ScriptSquadWebbshop
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddControllers();
             builder.Services.AddRazorPages();
             var app = builder.Build();
 
@@ -52,6 +53,8 @@ namespace ScriptSquadWebbshop
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllers();
             app.MapRazorPages();
 
             app.Run();
