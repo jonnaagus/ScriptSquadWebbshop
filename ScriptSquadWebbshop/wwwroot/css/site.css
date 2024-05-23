@@ -1,355 +1,408 @@
-/* Responsiv fontstorlek */
+/* Flexibel layout */
 html {
-    font-size: 14px;
+    font-size: 16px; /* Grundläggande fontstorlek */
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-/* Fokusstilar */
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-/* Grundläggande inställningar */
 body {
-    font-family: 'Oswald', sans-serif;
-    background-color: #ffffff;
-    margin-bottom: 60px;
+    font-family: 'Oswald', sans-serif; /* Använd Oswald fonten för hela sidan */
+    background-color: #ffffff; /* Vit bakgrundsfärg för body */
+    margin: 0; /* Ingen marginal runt sidan */
+    padding-bottom: 60px; /* Lägg till extra utrymme i botten för att undvika att foten klipps av */
 }
 
 .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    width: 100%; /* Bredden ska ta upp hela tillgängliga utrymmet */
+    max-width: 1200px; /* Maximal bredd för innehåll */
+    margin: 0 auto; /* Centrera innehållet */
+    padding: 0 20px; /* Lägg till lite utfyllnad på sidorna */
 }
 
-/* Rubrikstilar */
 h1, h2, h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    color: #000;
+    font-family: 'Bebas Neue', sans-serif; /* Använd Bebas Neue för rubriker */
+    color: #000; /* Svart textfärg */
+    margin-top: 20px; /* Lite utrymme över rubrikerna */
+    margin-bottom: 20px; /* Lite utrymme under rubrikerna */
 }
 
 h4, h5 {
-    font-family: 'Oswald', sans-serif;
-    color: #000;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.25rem;
+    font-family: 'Oswald', sans-serif; /* Använd Oswald för mindre rubriker */
+    color: #000; /* Svart textfärg */
+    text-align: center; /* Centrera mindre rubriker */
+    margin-bottom: 20px; /* Lite utrymme under mindre rubriker */
+    font-size: 1.25rem; /* Storlek på mindre rubriker */
+    margin-top: 20px; /* Lite utrymme över mindre rubriker */
 }
 
 p {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1rem;
-    color: #333;
+    font-family: 'Oswald', sans-serif; /* Använd Oswald för löptext */
+    font-size: 1rem; /* Grundläggande fontstorlek för löptext */
+    color: #000; /* Svart textfärg */
+}
+
+.border-top {
+    border-top: 1px solid #c48205ce; /* Översta kanten med en tunn solid linje */
+}
+
+.border-bottom {
+    border-bottom: 1px solid #c48205ce; /* Nedersta kanten med en tunn solid linje */
+}
+
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); /* Lägg till en subtil skuggning runt boxen */
 }
 
 /* Anpassad knappstil */
 .custom-btn {
-    background-color: #ffffff !important;
-    border-color: #c48205ce !important;
-    color: #000 !important;
-    box-shadow: #c48205ce !important;
+    background-color: #ffffff !important; /* Bakgrundsfärg för knappen */
+    border-color: #c48205ce !important; /* Ramfärg för knappen */
+    color: #000 !important; /* Textfärg för knappen */
+    box-shadow: #c48205ce !important; /* Skugga runt knappen */
 }
 
     .custom-btn:hover {
-        background-color: #ffffff !important;
-        border-color: #c48205ce !important;
-        color: #c48205ce !important;
+        background-color: #ffffff !important; /* Bakgrundsfärg för knappen vid hover */
+        border-color: #c48205ce !important; /* Ramfärg för knappen vid hover */
+        color: #c48205ce !important; /* Textfärg för knappen vid hover */
     }
 
 /* Navbar styling */
 .logo {
-    width: 400px;
-    height: 70px;
+    width: 100%; /* Logons bredd */
+    max-width: 300px; /* Maximal logobredd */
+    height: auto; /* Automatisk höjd för logon */
 }
 
-.navbar-custom {
-    background-color: #ffffff;
-    color: #000;
+a {
+    color: #000; /* Standardlänkfärg */
+    font-size: 18px; /* Standardfontstorlek för länkar */
 }
 
-.navbar-nav {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: #000;
-}
-
-.nav-item {
-    margin-right: 20px;
-}
-
-.nav-link {
-    text-decoration: none;
-    color: #000;
+.navbar {
+    background-color: #ffffff; /* Bakgrundsfärg för navbar */
+    color: #000; /* Textfärg för navbar */
+    padding: 5px 5px; /* Utfyllnad för navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(196, 130, 5, 0.5); /* Skuggning runt navbar */
 }
 
 .nav-item .nav-link:hover {
-    color: #c48205ce; /* Guldig hover-färg */
+    color: #c48205ce; /* Länkfärg för hover-effekt */
 }
 
-/* Design Produktsida*/
+.navbar-custom {
+    background-color: #ffffff; /* Anpassad bakgrundsfärg för navbar */
+    color: #000; /* Anpassad textfärg för navbar */
+}
 
+.navbar-nav {
+    width: 100%; /* Bredden på navbar */
+    height: 70px; /* Höjden på navbar */
+    max-width: 1200px; /* Maximal bredd för navbar */
+    display: flex; /* Flex-läge för navbar */
+    justify-content: center; /* Centrerat innehåll */
+    align-items: center; /* Centrerat innehåll */
+    list-style: none; /* Ta bort punktlistan från navbar */
+    margin: 0 auto; /* Centrera navbar */
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000; /* Länkfärg för navbar */
+}
+
+.nav-item {
+    margin-right: 20px; /* Högermarginal för varje nav-item */
+}
+
+.nav-link {
+    text-decoration: none; /* Ingen understrykning på länkar */
+    color: #000; /* Standardlänkfärg */
+    transition: color 0.3s; /* Glatthet för färgövergång vid hover */
+    display: flex; /* Flex-läge för nav-länkar */
+    align-items: center; /* Centrerat innehåll för nav-länkar */
+}
+
+.nav-item .nav-link:hover {
+    color: #c48205ce; /* Länkfärg för hover-effekt */
+}
+
+/* Design Produktsida */
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    display: grid; /* Använd grid för att layouta produkter */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Anpassa antalet kolumner beroende på bredden */
+    gap: 20px; /* Avstånd mellan produkter */
 }
 
 .product-item {
-    background-color: #fff;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    background-color: #fff; /* Bakgrundsfärg för produkter */
+    border-radius: 5px; /* Avrunda hörnen på produkter */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Lägg till en subtil skugga runt produkterna */
+    overflow: hidden; /* Dölj överskjutande innehåll */
 }
+
 
 .product-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
+    width: 100%; /* Bredden på produktbilden */
+    height: 200px; /* Höjden på produktbilden */
+    object-fit: cover; /* Anpassa bilden till rutan utan att förvränga den */
 }
 
-/* Mediaförfrågan för mindre skärmar */
-@media screen and (max-width: 1040px) {
-    .navbar-nav {
-        display: none;
-    }
-
-    .navbar-dropdown {
-        display: block;
-    }
-
-        .navbar-dropdown .dropdown-menu {
-            display: none;
-        }
-
-            .navbar-dropdown .dropdown-menu.show {
-                display: block;
-            }
-}
-
-/* Anpassningar för produktkorten */
 .product-card {
-    position: relative;
-    overflow: hidden;
-    margin: 20px;
+    position: relative; /* Relativ position för produktkortet */
+    overflow: hidden; /* Dölj överskjutande innehåll */
+    margin: 20px 0; /* Utfyllnad runt produktkortet */
 }
 
     .product-card:hover {
-        border-color: #c48205ce; /* Ändra färg på ramen när man hovrar över produktkortet */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Öka skuggning och lyft lite när man hovrar över produktkortet */
+        border-color: #c48205ce; /* Ramfärg för produktkort vid hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt produktkortet vid hover */
     }
 
-/* Produktkortens stilar */
 .thumbnail {
-    position: relative;
-    overflow: visible; 
-    margin-bottom: 50px;
+    position: relative; /* Relativ position för thumbnail */
+    overflow: visible; /* Synligt innehåll för thumbnail */
+    margin-bottom: 50px; /* Utfyllnad i botten av thumbnail */
 }
 
+    .thumbnail img {
+        width: 100%; /* Bredden på bilden i thumbnail */
+        height: auto; /* Automatisk höjd för bilden i thumbnail */
+        max-height: 200px; /* Maximal höjd för bilden i thumbnail */
+        transition: transform 0.3s; /* Jämn övergång för transformering vid hover */
+    }
 
-.thumbnail img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    transition: transform 0.3s;
-}
-
-.thumbnail:hover img {
-    transform: scale(1.1);
-}
+    .thumbnail:hover img {
+        transform: scale(1.1); /* Förstora bilden vid hover */
+    }
 
 .caption {
-    text-align: center;
-    padding: 10px; 
+    text-align: center; /* Centrera text i caption */
+    padding: 10px; /* Utfyllnad runt caption */
 }
 
-.caption p {
-    margin-bottom: 20px;
-}
+    .caption p {
+        margin-bottom: 20px; /* Utfyllnad i botten av text i caption */
+    }
 
 .description, .add-to-cart {
-    display: none; /* Dölj beskrivningen och knappen initialt */
+    display: none; /* Dölj beskrivning och lägg till kundvagnsikon som standard */
 }
 
 .thumbnail:hover .description, .thumbnail:hover .add-to-cart {
-    display: block; /* Visa beskrivningen och knappen vid hovring */
-    margin-bottom: 10px;
+    display: block; /* Visa beskrivning och kundvagnsikon vid hover */
+    margin-bottom: 10px; /* Utfyllnad i botten av beskrivning och kundvagnsikon */
 }
 
 .add-to-cart {
-    position: absolute;
-    bottom: -40px; 
-    left: 50%;
-    transform: translateX(-50%);
+    position: absolute; /* Absolut position för kundvagnsikon */
+    bottom: -40px; /* Placeringen i botten av thumbnail */
+    left: 50%; /* Placeringen i mitten av thumbnail */
+    transform: translateX(-50%); /* Centrera kundvagnsikonet horisontellt */
 }
 
-/* Anpassad knappstil för "Lägg till i varukorgen" */
 .my-custom-button {
-    background-color: #c4820578;
-    border-color: #c48205ce;
-    color: #000;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 5px 5px;
-    font-size: 14px;
-    border-radius: 4px;
+    background-color: #fff; /* Bakgrundsfärg för anpassad knapp */
+    border-color: #c48205ce; /* Ramfärg för anpassad knapp */
+    color: #000; /* Textfärg för anpassad knapp */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt knappen */
+    padding: 5px 10px; /* Utfyllnad för knappen */
+    font-size: 14px; /* Fontstorlek för knappen */
+    border-radius: 4px; /* Avrunda hörnen på knappen */
 }
 
     .my-custom-button:hover {
-        background-color: #c4820543;
-        border-color: #c48205ce;
-        color: #000;
-        border-radius: 4px;
+        background-color: #c4820543; /* Bakgrundsfärg för knappen vid hover */
+        border-color: #c48205ce; /* Ramfärg för knappen vid hover */
+        color: #000; /* Textfärg för knappen vid hover */
     }
 
-/* Anpassad textstorlek för rutorna */
-.product-card p {
-    font-size: 14px; /* Anpassa textstorlek för att få plats med innehållet */
+.custom-btn {
+    width: 120px; /* Bredden på anpassad knapp */
+    justify-content: center; /* Centrera innehåll horisontellt i anpassad knapp */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt knappen */
+    font-size: 16px; /* Fontstorlek för anpassad knapp */
 }
 
-/* Responsivitetsanpassning för produktrutnät */
-@media screen and (max-width: 768px) {
-    .product-grid {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
+.product-card p {
+    font-size: 14px; /* Fontstorlek för text i produktkort */
 }
 
 /* Kontaktinformationens layout */
 .contact-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 1200px; /* Maximal bredd för kontaktcontainer */
+    margin: 0 auto; /* Centrera kontaktcontainer horisontellt */
+    padding: 20px; /* Utfyllnad runt kontaktcontainer */
+    background-color: #f9f9f9; /* Bakgrundsfärg för kontaktcontainer */
+    border-radius: 10px; /* Avrunda hörnen på kontaktcontainer */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kontaktcontainer */
 }
 
 /* Hitta oss kartans layout */
 iframe {
-    border-radius: 10px;
+    border-radius: 10px; /* Avrunda hörnen på karta */
 }
 
-/* Anpassningar för kontaktinformationen */
 .contact-info {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Bakgrundsfärg för kontaktinfo */
+    border-radius: 10px; /* Avrunda hörnen på kontaktinfo */
+    padding: 20px; /* Utfyllnad runt kontaktinfo */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kontaktinfo */
 }
 
-/* Anpassningar för hitta oss sektionen */
 .map-section {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Bakgrundsfärg för kartsektion */
+    border-radius: 10px; /* Avrunda hörnen på kartsektion */
+    padding: 20px; /* Utfyllnad runt kartsektion */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kartsektion */
 }
 
-/* Mediefrågor för responsiv design */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
+/* Om oss */
+.company-info .container {
+    max-width: 800px; /* Maximal bredd för om oss-container */
+    margin: 0 auto; /* Centrera om oss-container horisontellt */
+    padding: 20px; /* Utfyllnad runt om oss-container */
+    text-align: center; /* Centrera text i om oss-container */
+}
 
-    .contact-info, .map-section {
-        padding: 15px;
-    }
-
-    h2, h5 {
-        font-size: 1.5rem;
-    }
-
-    p {
-        font-size: 0.875rem;
-    }
+.company-info .description {
+    margin-top: 20px; /* Utfyllnad över beskrivning i om oss-container */
+    font-size: 16px; /* Fontstorlek för beskrivning i om oss-container */
+    line-height: 1.5; /* Radhöjd för beskrivning i om oss-container */
 }
 
 /* Kundrecensioner */
 .review {
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 5px;
-    text-align: center;
+    padding: 20px; /* Utfyllnad runt recensioner */
+    background-color: #f8f9fa; /* Bakgrundsfärg för recensioner */
+    border: 1px solid #dee2e6; /* Ram runt recensioner */
+    border-radius: 5px; /* Avrunda hörnen på recensioner */
+    text-align: center; /* Centrera text i recensioner */
 }
 
     .review blockquote {
-        font-size: 18px;
+        font-size: 18px; /* Fontstorlek för blockcitat i recensioner */
     }
 
     .review footer {
-        font-style: italic;
-        margin-top: 10px;
+        font-style: italic; /* Kursiv stil för fotnoter i recensioner */
+        margin-top: 10px; /* Utfyllnad över fotnoter i recensioner */
     }
 
-/* Justera "karusellen" för recensioner */
 .carousel {
-    margin-bottom: 50px;
+    margin-bottom: 50px; /* Utfyllnad i botten av karusell */
 }
 
 .carousel-control-prev,
 .carousel-control-next {
-    width: 5%;
+    width: 5%; /* Bredden på föregående och nästa knappar */
 }
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Bakgrundsfärg för pilikon i karusell */
 }
 
 .carousel-item {
-    display: none;
-    text-align: center;
+    display: none; /* Dölj karusellbilder som standard */
+    text-align: center; /* Centrera text i karusellbilder */
 }
 
     .carousel-item.active {
-        display: block;
+        display: block; /* Visa aktiv karusellbild */
     }
 
 .carousel-inner {
-    width: 100%;
+    width: 100%; /* Bredden på karusellinnehåll */
 }
 
 .carousel-fade .carousel-item {
-    opacity: 0;
-    transition-duration: 1s;
+    opacity: 0; /* Genomsynlighet för karusellbilder som standard */
+    transition-duration: 1s; /* Övergångstid för karusellbilder */
 }
 
     .carousel-fade .carousel-item.active {
-        opacity: 1;
+        opacity: 1; /* Visa aktiv karusellbild */
     }
 
 /* Prenumerera på nyhetsbrev */
 .news-container {
-    margin-top: 30px;
+    margin-top: 30px; /* Utfyllnad över nyhetsbrevscontainer */
 }
 
+    /* Rubrik för nyhetsbrev */
     .news-container h2 {
-        margin-bottom: 20px;
+        margin-bottom: 20px; /* Utfyllnad i botten av nyhetsbrevsrubriken */
     }
 
+    /* Formulär för nyhetsbrev */
     .news-container form {
-        margin-top: 20px;
+        margin-top: 20px; /* Utfyllnad över nyhetsbrevsformuläret */
     }
 
-/* Kontaktinformationens layout */
+/* Utfyllnad över kontaktsidan */
 .contact-container {
-    margin-top: 30px;
+    margin-top: 30px; /* Utfyllnad över kontaktsidan */
 }
 
+/* Kontaktinformation */
 .contact-info {
-    background-color: #ffffff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Bakgrundsfärg för kontaktinformation */
+    border-radius: 10px; /* Avrunda hörnen på kontaktinformation */
+    padding: 20px; /* Utfyllnad runt kontaktinformation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kontaktinformation */
+}
+
+/* Sidfot */
+.footer {
+    position: fixed; /* Fixerad position för sidfoten */
+    bottom: 0; /* Placera sidfoten längst ned */
+    width: 100%; /* Full bredd för sidfoten */
+    height: 70px; /* Höjd på sidfoten */
+    background-color: #ffffff; /* Bakgrundsfärg för sidfoten */
+    color: #000000; /* Textfärg för sidfoten */
+    text-align: center; /* Centrera text i sidfoten */
+    padding: 10px 0; /* Utfyllnad runt text i sidfoten */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(196, 130, 5, 0.5); /* Skugga runt sidfoten */
+}
+
+/* Grundläggande inställningar för mindre skärmar */
+html {
+    font-size: 14px; /* Basfontstorlek för HTML-dokument */
+}
+
+/* Bakgrundsbild för knapp i navigeringsfältet för att expandera/minimera */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%280, 0, 0, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); /* Länk till SVG-ikonen för knapp */
+}
+
+@media (max-width: 1040px) {
+    .logo {
+        display: none; /* Göm loggan för mindre skärmar */
+    }
+
+    html {
+        font-size: 14px; /* Basfontstorlek för HTML-dokument på mindre skärmar */
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Rutnät för produkter på mindre skärmar */
+    }
+
+    .navbar-nav.flex-nowrap {
+        flex-wrap: nowrap; /* Undvik att radbryta navigeringslänkar på mindre skärmar */
+        overflow-x: auto; /* Tillåt horisontell rullning om navigeringslänkar inte får plats på mindre skärmar */
+    }
+
+        .navbar-nav.flex-nowrap .nav-item {
+            margin-right: 5px; /* Utfyllnad mellan navigeringslänkar på mindre skärmar */
+        }
+
+    .navbar-nav .nav-link {
+        font-size: 14px; /* Fontstorlek för navigeringslänkar på mindre skärmar */
+        padding: 5px 10px; /* Utfyllnad runt navigeringslänkar på mindre skärmar */
+    }
+}
+
+/* Gränsfärg för knapp i navigeringsfältet för att expandera/minimera */
+.navbar-toggler {
+    border-color: rgba(0, 0, 0, 0.1); /* Gränsfärg för knapp */
 }
 

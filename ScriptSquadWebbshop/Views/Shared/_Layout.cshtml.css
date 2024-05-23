@@ -1,5 +1,5 @@
 ﻿/* Navlink och Navbar styling */
-.navbar-brand {
+/*.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
@@ -23,11 +23,11 @@ a {
 }
 
 .nav-item .nav-link:hover {
-    color: #c48205ce; /* Guldig hover-färg */
-}
+    color: #c48205ce;*/ /* Guldig hover-färg */
+/*}*/
 
 /* Design för primär-knapp */
-.btn-primary {
+/*.btn-primary {
     color: #fff;
     background-color: #1b6ec2;
     border-color: #1861ac;
@@ -68,32 +68,4 @@ button.accept-policy {
         box-shadow: 0 0 0 0.1rem rgba(196, 130, 5, 0.25);
     }
 
-.footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #ffffff;
-    color: #000000;
-    text-align: center;
-    padding: 10px 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 2px 10px rgba(196, 130, 5, 0.5);
-}
 
-/* Mediaförfrågan för mindre skärmar */
-@media screen and (max-width: 1040px) {
-    .navbar-nav {
-        display: none;
-    }
-
-    .navbar-dropdown {
-        display: block;
-    }
-
-        .navbar-dropdown .dropdown-menu {
-            display: none;
-        }
-
-            .navbar-dropdown .dropdown-menu.show {
-                display: block;
-            }
-}
