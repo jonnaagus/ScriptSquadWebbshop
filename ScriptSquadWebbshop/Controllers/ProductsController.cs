@@ -52,13 +52,13 @@ namespace ScriptSquadWebbshop.Controllers
         // POST: Products/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,Price,Quantity")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,Price,Quantity,ImageUrl")] Product product)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(product);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ProductSide));
             }
             return View(product);
         }
@@ -107,7 +107,7 @@ namespace ScriptSquadWebbshop.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ProductSide));
             }
             return View(product);
         }
@@ -142,7 +142,7 @@ namespace ScriptSquadWebbshop.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(ProductSide));
         }
 
         private bool ProductExists(int id)
@@ -151,7 +151,7 @@ namespace ScriptSquadWebbshop.Controllers
         }
 
         // GET: Product
-        public ActionResult ProductSide()
+        public async Task<IActionResult> ProductSide()
         {
             // Mock data
             var products = new List<Product>
@@ -167,7 +167,7 @@ namespace ScriptSquadWebbshop.Controllers
                 new Product { ProductId = 9, ProductName = "Yale Doorman Classic", Description = "Yale Doorman Classic digitalt lås – lås upp med sifferkod, nyckeltagg eller en kombination av båda. Lägg in koder till varje familjemedlem eller skapa tillfälliga dygnskoder till besökare. Upp till 10 nyckelbrickor och upp till 10 unika användarkoder. Låsklass 2A.", Price = 3499.00f, Quantity = 12, ImageUrl = "/images/yale1.jpg" }
             };
 
-            return View(products);
+            return View(await _context.Procuct.ToListAsync());
         }
     }
 }
