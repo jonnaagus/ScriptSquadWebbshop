@@ -21,7 +21,7 @@ namespace ScriptSquadWebbshop.Controllers.Api
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var data = await _context.Procuct.ToListAsync();
+            var data = await _context.Product.ToListAsync();
             return Ok(data);
         }
 
@@ -29,7 +29,7 @@ namespace ScriptSquadWebbshop.Controllers.Api
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var product = await _context.Procuct.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
