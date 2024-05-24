@@ -125,7 +125,7 @@ namespace ScriptSquadWebbshop.Controllers
 
             _context.SaveChanges();
 
-            HttpContext.Session.Set("Carts", new List<ShoppingCartItem>());
+            HttpContext.Session.Set("Cart", new List<ShoppingCartItem>());
 
             return RedirectToAction("Index", "Home");
 
