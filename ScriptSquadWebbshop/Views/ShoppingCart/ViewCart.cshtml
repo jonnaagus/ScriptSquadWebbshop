@@ -1,13 +1,13 @@
 ﻿@model ShoppingCartViewModel
-<h1>Shopping Cart</h1>
-
+<h1>Kundvagn</h1>
+<h2 class="text-sucess">@(ViewBag.CartMessage)</h2>
 <table class="table">
 	<thead>
 		<tr>
-			<th>Product</th>
-			<th>Price</th>
-			<th>Quantity</th>
-			<th>Subtotal</th>
+			<th>Produkt</th>
+			<th>Pris</th>
+			<th>Antal</th>
+			<th>Summa</th>
 			<th></th>
 		</tr>
 	</thead>
@@ -19,7 +19,20 @@
 				<td>@(item.Product != null ? item.Product.Price.ToString("C") : "N/A")</td>
 				<td>@item.Quantity</td>
 				<td>@(item.Product != null ? (item.Product.Price * item.Quantity).ToString("C") : "N/A")</td>
+				<input type ="hidden" value="@item.Product.ProductId" />
+				<td>
+					<a asp-controller="ShoppingCart" asp-action="RemoveItem" asp-route-id="@item.Product.ProductId" class="btn-danger">Ta bort</a>
+				</td>
 			</tr>
 		}
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>Total Summa:</td>
+			<td>@Model.TotalPrice?.ToString("C")</td>
+			<td></td>
+		</tr>
 	</tbody>
 </table>
+	<a class="btn-sucess" asp-controller="ShoppingCart" asp-action="PurchaseItems">Köp</a>

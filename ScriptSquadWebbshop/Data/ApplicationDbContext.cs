@@ -17,6 +17,7 @@ namespace ScriptSquadWebbshop.Data
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductOrder> ProductOrder { get; set; }
         public DbSet<User> User { get; set; }
+        public DbSet<Purchase> Purchases { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

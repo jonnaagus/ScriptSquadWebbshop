@@ -167,7 +167,7 @@ namespace ScriptSquadWebbshop.Controllers
                 new Product { ProductId = 9, ProductName = "Yale Doorman Classic", Description = "Yale Doorman Classic digitalt lås – lås upp med sifferkod, nyckeltagg eller en kombination av båda. Lägg in koder till varje familjemedlem eller skapa tillfälliga dygnskoder till besökare. Upp till 10 nyckelbrickor och upp till 10 unika användarkoder. Låsklass 2A.", Price = 3499.00f, Quantity = 12, ImageUrl = "/images/yale1.jpg" }
             };
 
-            return View(await _context.Procuct.ToListAsync());
+            return View(await _context.Product.ToListAsync());
         }
     }
 }

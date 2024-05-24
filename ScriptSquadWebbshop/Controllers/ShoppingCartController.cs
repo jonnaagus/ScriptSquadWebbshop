@@ -44,6 +44,8 @@ namespace ScriptSquadWebbshop.Controllers
 
             HttpContext.Session.Set("Cart", cartItems);
 
+            TempData["CartMessage"] = $"{productToAdd.ProductName} tillagd i kundvagnen";
+
             return RedirectToAction("ViewCart");
         }
 
@@ -58,7 +60,57 @@ namespace ScriptSquadWebbshop.Controllers
 				TotalPrice = cartItems.Sum(item => (item.Product?.Price ?? 0) * item.Quantity)
 			};
 
+            ViewBag.CartMessage = TempData["CartMessage"];
+
             return View(cartViewModel);
+        }
+
+        public IActionResult RemoveItem(int id)
+        {
+            var cartItems = HttpContext.Session.Get<List<ShoppingCartItem>>("Cart") ?? new List<ShoppingCartItem>();
+
+            var itemToRemove = cartItems.FirstOrDefault(item => item.Product.ProductId == id);
+
+            if(itemToRemove != null)
+            {
+               if(itemToRemove.Quantity > 1)
+                {
+                    itemToRemove.Quantity--;
+                }
+               else
+                {
+                    cartItems.Remove(itemToRemove);
+                }
+            }
+
+            HttpContext.Session.Set("Cart", cartItems);
+
+            TempData["CartMessage"] = $"{itemToRemove.Product.ProductName} borttagen från kundvagnen";
+
+
+            return RedirectToAction("ViewCart");
+        }
+        public IActionResult PurchaseItems()
+        {
+            var cartItems = HttpContext.Session.Get<List<ShoppingCartItem>>("Cart") ?? new List<ShoppingCartItem>();
+
+            foreach(var item in cartItems)
+            {
+                _context.Purchases.Add(new Purchase
+                {
+                    ProductId = item.Product.ProductId,
+                    Quantity = item.Quantity,
+                    PurchaseDate = DateTime.Now,
+                    Total = item.Product.Price * item.Quantity
+                });
+            }
+
+            _context.SaveChanges();
+
+            HttpContext.Session.Set("Carts", new List<ShoppingCartItem>());
+
+            return RedirectToAction("Index", "Home");
+
         }
     }
 }

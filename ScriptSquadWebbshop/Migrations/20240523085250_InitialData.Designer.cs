@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ScriptSquadWebbshop.Data;
 
@@ -11,9 +12,11 @@ using ScriptSquadWebbshop.Data;
 namespace ScriptSquadWebbshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240523085250_InitialData")]
+    partial class InitialData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -420,33 +423,6 @@ namespace ScriptSquadWebbshop.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ScriptSquadWebbshop.Models.Purchase", b =>
-                {
-                    b.Property<int>("PurchaseId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PurchaseId"));
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("PurchaseDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Total")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("PurchaseId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Purchases");
-                });
-
             modelBuilder.Entity("ScriptSquadWebbshop.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -537,7 +513,7 @@ namespace ScriptSquadWebbshop.Migrations
                             AccessFailedCount = 0,
                             Address = "Testargatan 1",
                             City = "Testarstan",
-                            ConcurrencyStamp = "d98be3fe-89e5-43a6-b40a-5cb62ced8f26",
+                            ConcurrencyStamp = "e87f9022-5f78-4d4c-9a6b-98aca9cf04ed",
                             Email = "test@mail.co",
                             EmailConfirmed = true,
                             FirstName = "Test",
@@ -545,10 +521,10 @@ namespace ScriptSquadWebbshop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST@MAIL.COM",
                             NormalizedUserName = "TEST@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHz6D5PkuxWvVuTYuRltDmTNT0IuIH/4X1sEN7h1cvukhyg6bNWtC8P+aFgRXDN7uw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJYj+11DX8vKOCWl/bhiPfOIQUKo5O33JPjkoqL++NVjsQdpKd1YpQsJjjbXPFkc2A==",
                             PhoneNumber = "123456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3da6786a-5bf4-49a3-a5f9-5716e9f872ff",
+                            SecurityStamp = "b9806e91-9721-442d-aece-8fc6c426adf8",
                             TwoFactorEnabled = false,
                             UserName = "test@mail.com",
                             ZipCode = 11123
@@ -559,7 +535,7 @@ namespace ScriptSquadWebbshop.Migrations
                             AccessFailedCount = 0,
                             Address = "Testargatan 1",
                             City = "Testarstan",
-                            ConcurrencyStamp = "17db0f69-d0d4-4a22-b08b-4bae04439724",
+                            ConcurrencyStamp = "0dd1b013-8219-447e-b8b7-01014fe3a5af",
                             Email = "test1@mail.co",
                             EmailConfirmed = true,
                             FirstName = "Test1",
@@ -567,10 +543,10 @@ namespace ScriptSquadWebbshop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST1@MAIL.COM",
                             NormalizedUserName = "TEST1@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEC+wiHQfSUEIq9i7ICYYunoUwy9hbHhJt3wrQJxhPEwsMu10fByrb59Y40pRGq5FPQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJA+vJHrtw4tA23KOLOKLYtLoptZvHzF7nkbJwPahEn4Mz3G2q4Y559glO+NOCgo3w==",
                             PhoneNumber = "123456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e8e3eea5-f24a-4036-966a-4044e679c12a",
+                            SecurityStamp = "3120cfce-f7e8-4200-989b-3046ffb15856",
                             TwoFactorEnabled = false,
                             UserName = "test1@mail.com",
                             ZipCode = 11123
@@ -581,7 +557,7 @@ namespace ScriptSquadWebbshop.Migrations
                             AccessFailedCount = 0,
                             Address = "Testargatan 1",
                             City = "Testarstan",
-                            ConcurrencyStamp = "09520ed2-2dd3-463f-9a7b-dd512c4826d2",
+                            ConcurrencyStamp = "1384b702-3c1b-4dea-9948-7b5e0b089505",
                             Email = "tes2t@mail.co",
                             EmailConfirmed = true,
                             FirstName = "Test2",
@@ -589,10 +565,10 @@ namespace ScriptSquadWebbshop.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "TEST2@MAIL.COM",
                             NormalizedUserName = "TEST2@MAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFrxo60da4ngjGx0+Yr5GHXG4yXImmp9o23WdFgj1qSfBk0QOAcGTv7gVt9Qt3MrfQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF3JvoVI/sC5zBfb56pVX0qs0SiOPr7J9MwqbqHjopeTqpMwrEQALMlD7LlMbEYfzQ==",
                             PhoneNumber = "123456",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "4cb53a88-ab05-4088-b300-80ef4b848b19",
+                            SecurityStamp = "e6279125-be0f-4aca-8cc5-4b31c17ef68d",
                             TwoFactorEnabled = false,
                             UserName = "test2@mail.com",
                             ZipCode = 11123
@@ -676,17 +652,6 @@ namespace ScriptSquadWebbshop.Migrations
                         .IsRequired();
 
                     b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("ScriptSquadWebbshop.Models.Purchase", b =>
-                {
-                    b.HasOne("ScriptSquadWebbshop.Models.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Product");
                 });
