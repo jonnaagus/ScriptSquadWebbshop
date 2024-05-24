@@ -22,7 +22,10 @@
                     <p><b>Pris:</b> @product.Price.ToString("C", new System.Globalization.CultureInfo("sv-SE"))</p>
                     <p><b>Lagersaldo:</b> @product.Quantity</p>
                     <p class="description"><b>Information:</b> @product.Description</p>
-                    <button class="my-custom-button add-to-cart">Lägg till i varukorgen</button>
+                    <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="id" value="@product.ProductId" />
+                        <button type="submit" class="btn btn-primary">Lägg till i varukorgen</button>
+                    </form>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ namespace ScriptSquadWebbshop.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Procuct.ToListAsync());
+            return View(await _context.Product.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -33,7 +33,7 @@ namespace ScriptSquadWebbshop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Procuct
+            var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -71,7 +71,7 @@ namespace ScriptSquadWebbshop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Procuct.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product == null)
             {
                 return NotFound();
@@ -120,7 +120,7 @@ namespace ScriptSquadWebbshop.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Procuct
+            var product = await _context.Product
                 .FirstOrDefaultAsync(m => m.ProductId == id);
             if (product == null)
             {
@@ -135,10 +135,10 @@ namespace ScriptSquadWebbshop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Procuct.FindAsync(id);
+            var product = await _context.Product.FindAsync(id);
             if (product != null)
             {
-                _context.Procuct.Remove(product);
+                _context.Product.Remove(product);
             }
 
             await _context.SaveChangesAsync();
@@ -147,7 +147,7 @@ namespace ScriptSquadWebbshop.Controllers
 
         private bool ProductExists(int id)
         {
-            return _context.Procuct.Any(e => e.ProductId == id);
+            return _context.Product.Any(e => e.ProductId == id);
         }
 
         // GET: Product
@@ -167,7 +167,7 @@ namespace ScriptSquadWebbshop.Controllers
                 new Product { ProductId = 9, ProductName = "Yale Doorman Classic", Description = "Yale Doorman Classic digitalt lås – lås upp med sifferkod, nyckeltagg eller en kombination av båda. Lägg in koder till varje familjemedlem eller skapa tillfälliga dygnskoder till besökare. Upp till 10 nyckelbrickor och upp till 10 unika användarkoder. Låsklass 2A.", Price = 3499.00f, Quantity = 12, ImageUrl = "/images/yale1.jpg" }
             };
 
-            return View(await _context.Procuct.ToListAsync());
+            return View(await _context.Product.ToListAsync());
         }
     }
 }

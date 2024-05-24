@@ -9,18 +9,18 @@ using ScriptSquadWebbshop.Data;
 
 #nullable disable
 
-namespace ScriptSquadWebbshop.Data.Migrations
+namespace ScriptSquadWebbshop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240520081215_summary")]
-    partial class summary
+    [Migration("20240523085250_InitialData")]
+    partial class InitialData
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -178,6 +178,44 @@ namespace ScriptSquadWebbshop.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Order");
+
+                    b.HasData(
+                        new
+                        {
+                            OrderId = 100,
+                            OrderDate = new DateTime(2024, 4, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "0c047536-998d-4509-9c19-d1e88253f242"
+                        },
+                        new
+                        {
+                            OrderId = 101,
+                            OrderDate = new DateTime(2024, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "b01e3f0d-acb0-4eab-90b3-8a519e3456b9"
+                        },
+                        new
+                        {
+                            OrderId = 102,
+                            OrderDate = new DateTime(2024, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "4028df22-8f69-48cc-ac21-6bacd405582e"
+                        },
+                        new
+                        {
+                            OrderId = 103,
+                            OrderDate = new DateTime(2024, 4, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "4028df22-8f69-48cc-ac21-6bacd405582e"
+                        },
+                        new
+                        {
+                            OrderId = 104,
+                            OrderDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "b01e3f0d-acb0-4eab-90b3-8a519e3456b9"
+                        },
+                        new
+                        {
+                            OrderId = 105,
+                            OrderDate = new DateTime(2024, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = "0c047536-998d-4509-9c19-d1e88253f242"
+                        });
                 });
 
             modelBuilder.Entity("ScriptSquadWebbshop.Models.Product", b =>
@@ -189,6 +227,10 @@ namespace ScriptSquadWebbshop.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"));
 
                     b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -204,7 +246,90 @@ namespace ScriptSquadWebbshop.Data.Migrations
 
                     b.HasKey("ProductId");
 
-                    b.ToTable("Procuct");
+                    b.ToTable("Product");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 100,
+                            Description = "Apple TV 4K (2022) – all underhållning på ett ställe med skarp bild, tillgång till appar, filmer, musik och spel och en ännu mer lättanvänd fjärrkontroll.",
+                            ImageUrl = "/images/appletv.jpg",
+                            Price = 1995f,
+                            ProductName = "Apple TV",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = 102,
+                            Description = "Electrolux Pure 300 luftrenare erbjuder avancerad luftrening för hem upp till 46 m². Med dess smarta design och kraftfulla filtreringssystem andas du renare och friskare luft varje dag.",
+                            ImageUrl = "/images/luftrenare.jpg",
+                            Price = 1499f,
+                            ProductName = "Electrolux luftrenare",
+                            Quantity = 1
+                        },
+                        new
+                        {
+                            ProductId = 103,
+                            Description = "Rena luften tyst och effektivt i små rum som sovrum eller i en liten lägenhet. Svensktillverkade Woods AL310 luftrenare med joniserande filtreringsteknologi tar bort 99,98 procent av alla skadliga partiklar. För rum upp till 55 kvm.",
+                            ImageUrl = "/images/luftrenare1.jpg",
+                            Price = 4990f,
+                            ProductName = "Woods luftrenare",
+                            Quantity = 3
+                        },
+                        new
+                        {
+                            ProductId = 104,
+                            Description = "TP-Link Deco BE65 är en avancerad mesh-router som levererar blixtsnabba hastigheter och stabil uppkoppling i hela hemmet. Med WiFi 7 är du rustad för framtidens internethastigheter.",
+                            ImageUrl = "/images/router.jpg",
+                            Price = 6490f,
+                            ProductName = "TP-Link router",
+                            Quantity = 7
+                        },
+                        new
+                        {
+                            ProductId = 105,
+                            Description = "Asus RT-AX53U är en högpresterande router med stöd för framtidens trådlösa standard (WiFi 6). Upp till 1,8 Gbps hastighet, hög säkerhet med inbyggt virussystem och föräldrakontroll.",
+                            ImageUrl = "/images/router1.jpg",
+                            Price = 849f,
+                            ProductName = "Asus router",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = 106,
+                            Description = "Starlink Business High Performance kit – koppla upp företaget eller användare med höga krav till ett snabbt och pålitligt internet 24/7. Med Starlink Business har du alltid bästa prestanda oavsett belastningen på nätverket. (Abonnemang krävs och säljs separat.)",
+                            ImageUrl = "/images/routerkit.jpg",
+                            Price = 27999f,
+                            ProductName = "Starlink router",
+                            Quantity = 2
+                        },
+                        new
+                        {
+                            ProductId = 107,
+                            Description = "Nexa MYC-4 plug-in-kit med fjärrkontroll och 3 trådlösa plug-in-mottagare. Tänd och släck lampor hemma med fjärrkontroll. Plugga in i vägguttaget och anslut lampans stickpropp.",
+                            ImageUrl = "/images/uttag.jpg",
+                            Price = 199.9f,
+                            ProductName = "Nexa fjärrströmbrytare",
+                            Quantity = 5
+                        },
+                        new
+                        {
+                            ProductId = 108,
+                            Description = "Yale Doorman L3S Flex är det digitala dörrlåset som gör livet enklare. Lås upp med kod, nyckeltag, app eller låt låset låsa upp dörren åt dig med hjälp av geofencing. Lägg in koder till varje familjemedlem eller skapa tillfälliga dygnskoder till besökare.",
+                            ImageUrl = "/images/yale.jpg",
+                            Price = 5990f,
+                            ProductName = "Yale Doorman L3S",
+                            Quantity = 7
+                        },
+                        new
+                        {
+                            ProductId = 109,
+                            Description = "Yale Doorman Classic digitalt lås – lås upp med sifferkod, nyckeltagg eller en kombination av båda. Lägg in koder till varje familjemedlem eller skapa tillfälliga dygnskoder till besökare. Upp till 10 nyckelbrickor och upp till 10 unika användarkoder. Låsklass 2A.",
+                            ImageUrl = "/images/yale1.jpg",
+                            Price = 3499f,
+                            ProductName = "Yale Doorman Classic",
+                            Quantity = 12
+                        });
                 });
 
             modelBuilder.Entity("ScriptSquadWebbshop.Models.ProductOrder", b =>
@@ -231,6 +356,71 @@ namespace ScriptSquadWebbshop.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductOrder");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductOrderId = 100,
+                            Amount = 1,
+                            OrderId = 100,
+                            ProductId = 100
+                        },
+                        new
+                        {
+                            ProductOrderId = 101,
+                            Amount = 2,
+                            OrderId = 101,
+                            ProductId = 102
+                        },
+                        new
+                        {
+                            ProductOrderId = 102,
+                            Amount = 2,
+                            OrderId = 102,
+                            ProductId = 109
+                        },
+                        new
+                        {
+                            ProductOrderId = 103,
+                            Amount = 1,
+                            OrderId = 103,
+                            ProductId = 105
+                        },
+                        new
+                        {
+                            ProductOrderId = 104,
+                            Amount = 5,
+                            OrderId = 104,
+                            ProductId = 102
+                        },
+                        new
+                        {
+                            ProductOrderId = 105,
+                            Amount = 2,
+                            OrderId = 104,
+                            ProductId = 103
+                        },
+                        new
+                        {
+                            ProductOrderId = 106,
+                            Amount = 3,
+                            OrderId = 105,
+                            ProductId = 100
+                        },
+                        new
+                        {
+                            ProductOrderId = 107,
+                            Amount = 1,
+                            OrderId = 105,
+                            ProductId = 107
+                        },
+                        new
+                        {
+                            ProductOrderId = 108,
+                            Amount = 1,
+                            OrderId = 105,
+                            ProductId = 102
+                        });
                 });
 
             modelBuilder.Entity("ScriptSquadWebbshop.Models.User", b =>
@@ -315,6 +505,74 @@ namespace ScriptSquadWebbshop.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0c047536-998d-4509-9c19-d1e88253f242",
+                            AccessFailedCount = 0,
+                            Address = "Testargatan 1",
+                            City = "Testarstan",
+                            ConcurrencyStamp = "e87f9022-5f78-4d4c-9a6b-98aca9cf04ed",
+                            Email = "test@mail.co",
+                            EmailConfirmed = true,
+                            FirstName = "Test",
+                            LastName = "Testsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST@MAIL.COM",
+                            NormalizedUserName = "TEST@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJYj+11DX8vKOCWl/bhiPfOIQUKo5O33JPjkoqL++NVjsQdpKd1YpQsJjjbXPFkc2A==",
+                            PhoneNumber = "123456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b9806e91-9721-442d-aece-8fc6c426adf8",
+                            TwoFactorEnabled = false,
+                            UserName = "test@mail.com",
+                            ZipCode = 11123
+                        },
+                        new
+                        {
+                            Id = "b01e3f0d-acb0-4eab-90b3-8a519e3456b9",
+                            AccessFailedCount = 0,
+                            Address = "Testargatan 1",
+                            City = "Testarstan",
+                            ConcurrencyStamp = "0dd1b013-8219-447e-b8b7-01014fe3a5af",
+                            Email = "test1@mail.co",
+                            EmailConfirmed = true,
+                            FirstName = "Test1",
+                            LastName = "Testsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST1@MAIL.COM",
+                            NormalizedUserName = "TEST1@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJA+vJHrtw4tA23KOLOKLYtLoptZvHzF7nkbJwPahEn4Mz3G2q4Y559glO+NOCgo3w==",
+                            PhoneNumber = "123456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3120cfce-f7e8-4200-989b-3046ffb15856",
+                            TwoFactorEnabled = false,
+                            UserName = "test1@mail.com",
+                            ZipCode = 11123
+                        },
+                        new
+                        {
+                            Id = "4028df22-8f69-48cc-ac21-6bacd405582e",
+                            AccessFailedCount = 0,
+                            Address = "Testargatan 1",
+                            City = "Testarstan",
+                            ConcurrencyStamp = "1384b702-3c1b-4dea-9948-7b5e0b089505",
+                            Email = "tes2t@mail.co",
+                            EmailConfirmed = true,
+                            FirstName = "Test2",
+                            LastName = "Testsson",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "TEST2@MAIL.COM",
+                            NormalizedUserName = "TEST2@MAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEF3JvoVI/sC5zBfb56pVX0qs0SiOPr7J9MwqbqHjopeTqpMwrEQALMlD7LlMbEYfzQ==",
+                            PhoneNumber = "123456",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "e6279125-be0f-4aca-8cc5-4b31c17ef68d",
+                            TwoFactorEnabled = false,
+                            UserName = "test2@mail.com",
+                            ZipCode = 11123
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -13,6 +13,9 @@ namespace ScriptSquadWebbshop
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddMemoryCache();
+            builder.Services.AddSession();
+
            
 
             // Add services to the container.
@@ -38,6 +41,8 @@ namespace ScriptSquadWebbshop
             builder.Services.AddScoped<ApiService>();
 
             var app = builder.Build();
+
+            app.UseSession();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
