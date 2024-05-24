@@ -82,7 +82,7 @@ namespace ScriptSquadWebbshop.Controllers
         // POST: Products/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,Price,Quantity")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,Price,Quantity,ImageUrl")] Product product)
         {
             if (id != product.ProductId)
             {

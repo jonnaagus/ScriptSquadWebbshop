@@ -8,7 +8,9 @@
 <h1 class="text-center">Våra Produkter</h1>
 @if (User.IsInRole(SD.Role_Admin))
 {
+
     <a asp-action="Create">Lägg till produkt</a>
+
 }
 
 <div class="row">
@@ -24,7 +26,14 @@
                     <p class="description"><b>Information:</b> @product.Description</p>
                     <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
                         <input type="hidden" name="id" value="@product.ProductId" />
+
                         <input type="submit" value="Lägg till i varukorgen" class="my-custom-button" />
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <a asp-action="Edit" asp-route-id="@product.ProductId">Ändra</a>
+
+                        }
+
                     </form>
                 </div>
             </div>

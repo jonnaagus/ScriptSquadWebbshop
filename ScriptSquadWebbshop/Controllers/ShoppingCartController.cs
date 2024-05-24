@@ -4,6 +4,8 @@ using ScriptSquadWebbshop.Models;
 using ScriptSquadWebbshop.Data;
 using Microsoft.AspNetCore.Identity;
 using NuGet.Packaging.Signing;
+using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace ScriptSquadWebbshop.Controllers
 {
@@ -114,11 +116,16 @@ namespace ScriptSquadWebbshop.Controllers
                     Amount = item.Quantity,
                   
                 });
+               var product = _context.Product.FirstOrDefaultAsync(m => m.ProductId == item.Product.ProductId).Result;
+                if (product.Quantity > 0)
+                {
+                product.Quantity -= item.Quantity;
+                }
             }
 
             _context.SaveChanges();
 
-            HttpContext.Session.Set("Carts", new List<ShoppingCartItem>());
+            HttpContext.Session.Set("Cart", new List<ShoppingCartItem>());
 
             return RedirectToAction("Index", "Home");
 
