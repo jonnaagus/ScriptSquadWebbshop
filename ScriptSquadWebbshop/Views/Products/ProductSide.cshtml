@@ -5,10 +5,10 @@
     ViewBag.Title = "Product Page";
 }
 
-<h1 class="text-center">Produkter</h1>
+<h1 class="text-center">Våra Produkter</h1>
 @if (User.IsInRole(SD.Role_Admin))
 {
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Lägg till produkt</a>
 }
 
 <div class="row">
@@ -24,7 +24,7 @@
                     <p class="description"><b>Information:</b> @product.Description</p>
                     <form asp-controller="ShoppingCart" asp-action="AddToCart" method="post">
                         <input type="hidden" name="id" value="@product.ProductId" />
-                        <button type="submit" class="btn btn-primary">Lägg till i varukorgen</button>
+                        <input type="submit" value="Lägg till i varukorgen" class="my-custom-button" />
                     </form>
                 </div>
             </div>

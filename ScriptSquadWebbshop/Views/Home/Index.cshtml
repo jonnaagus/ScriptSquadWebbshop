@@ -3,8 +3,27 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Välkommen till ScriptSquads Webbshop!</h1>
-    <p class="slogan">Where code meets creativity</p>
+    <h1 class="display-4">Välkommen till ScriptSquad's webbshop!</h1>
+    <h4>
+        Vi är glada att ha dig här. På ScriptSquad är vår specialitet smarta hem-produkter<br>
+        som gör ditt liv enklare, mer bekvämt och säkrare.<br>
+        <br>
+
+        Utforska vårt sortiment av innovativa och högkvalitativa smarta hem-produkter som är noggrant<br>
+        utvalda för att möta dina behov och förbättra din vardag.<br>
+        <br>
+        Oavsett om du letar efter intelligenta belysningslösningar, smarta lås, termostater eller<br>
+        övervakningskameror, har vi något för alla.<br>
+        <br>
+        Vi strävar efter att skapa en varm och inbjudande atmosfär för dig att upptäcka och njuta av de<br>
+        senaste innovationerna inom smarta hem. Hos oss är kundnöjdhet vår högsta prioritet, och vi är<br>
+        dedikerade till att erbjuda dig en utmärkt shoppingupplevelse.<br>
+        <br>
+        Tack för att du väljer ScriptSquad. Vi ser fram emot att hjälpa dig att förvandla ditt hem till en<br>
+        smartare och mer bekväm plats att vara på.<br>
+        <br>
+        Välkommen till vår gemenskap av smarta hem-entusiaster!
+    </h4>
 </div>
 
 <div class="mt-5"></div>
@@ -13,13 +32,34 @@
     <h2 class="text-center">Prenumerera på vårt nyhetsbrev</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form>
+            <form id="newsletterForm">
                 <div class="form-group">
                     <label for="email" style="font-size: 14px;">Emailadress:</label>
                     <input type="email" class="form-control" id="email" placeholder="Ange din emailadress" style="margin-bottom: 10px;">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block custom-btn">Prenumerera</button>
+                <button type="submit" class="custom-btn">Prenumerera</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("newsletterForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Förhindra standardbeteende för formulär
+
+        // Hämta e-postadressen från formuläret
+        var email = document.getElementById("email").value;
+
+        // Visa bekräftelsemeddelande
+        alert("Tack för att du prenumererar på vårt nyhetsbrev!");
+
+        // Rensa formuläret
+        document.getElementById("email").value = "";
+    });
+</script>
+
+<div style="margin-bottom: 20px;"></div>
+
+<a class="welcome-page" href="/">
+    <img src="~/images/logoscript1.png" alt="Logo" class="welcome" />
+</a>

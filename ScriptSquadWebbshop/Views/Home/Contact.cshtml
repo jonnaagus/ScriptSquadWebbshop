@@ -23,13 +23,28 @@
     <h2 class="text-center">Prenumerera på vårt nyhetsbrev</h2>
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <form>
+            <form id="newsletterForm">
                 <div class="form-group">
                     <label for="email" style="font-size: 14px;">Emailadress:</label>
                     <input type="email" class="form-control" id="email" placeholder="Ange din emailadress" style="margin-bottom: 10px;">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block custom-btn">Prenumerera</button>
+                <button type="submit" class="custom-btn">Prenumerera</button>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("newsletterForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Förhindra standardbeteende för formulär
+
+        // Hämta e-postadressen från formuläret
+        var email = document.getElementById("email").value;
+
+        // Visa bekräftelsemeddelande
+        alert("Tack för att du prenumererar på vårt nyhetsbrev!");
+
+        // Rensa formuläret
+        document.getElementById("email").value = "";
+    });
+</script>
