@@ -51,7 +51,7 @@ namespace ScriptSquadWebbshop.Controllers
 
             HttpContext.Session.Set("Cart", cartItems);
 
-            TempData["CartMessage"] = $"{productToAdd.ProductName} tillagd i kundvagnen";
+            TempData["CartMessage"] = $"{productToAdd.ProductName} tillagd i varukorgen";
 
             return RedirectToAction("ViewCart");
         }
@@ -92,7 +92,7 @@ namespace ScriptSquadWebbshop.Controllers
 
             HttpContext.Session.Set("Cart", cartItems);
 
-            TempData["CartMessage"] = $"{itemToRemove.Product.ProductName} borttagen från kundvagnen";
+            TempData["CartMessage"] = $"{itemToRemove.Product.ProductName} borttagen från varukorgen";
 
 
             return RedirectToAction("ViewCart");

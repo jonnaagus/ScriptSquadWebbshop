@@ -51,19 +51,37 @@ p {
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); /* Lägg till en subtil skuggning runt boxen */
 }
 
+/* Hem */
+.welcome-page {
+    display: flex;
+    justify-content: center; /* Centrera horisontellt */
+    text-align: center; /* Centrera eventuell text också */
+}
+
+.welcome {
+    max-width: 100%; /* Så att bilden inte blir större än dess förälder */
+}
+
 /* Anpassad knappstil */
 .custom-btn {
     background-color: #ffffff !important; /* Bakgrundsfärg för knappen */
     border-color: #c48205ce !important; /* Ramfärg för knappen */
     color: #000 !important; /* Textfärg för knappen */
-    box-shadow: #c48205ce !important; /* Skugga runt knappen */
+    box-shadow: 0 0 5px #c48205ce !important; /* Skugga runt knappen */
+    padding: 10px 20px; /* Justera storlek på knappen */
+    font-size: 16px; /* Justera textstorlek */
+    text-decoration: none !important; /* Ta bort understrykning */
+    display: inline-block; /* Se till att knappen beter sig som en knapp */
+    border-radius: 4px; /* Lägg till rundade hörn om önskat */
+    transition: background-color 0.3s; /* Glatthet för färgövergång */
 }
 
-    .custom-btn:hover {
-        background-color: #ffffff !important; /* Bakgrundsfärg för knappen vid hover */
-        border-color: #c48205ce !important; /* Ramfärg för knappen vid hover */
-        color: #c48205ce !important; /* Textfärg för knappen vid hover */
-    }
+.custom-btn:hover {
+    background-color: #ffffff !important; /* Bakgrundsfärg för knappen vid hover */
+    border-color: #c48205ce !important; /* Ramfärg för knappen vid hover */
+    color: #c48205ce !important; /* Textfärg för knappen vid hover */
+    text-decoration: none !important; /* Ta bort understrykning vid hover */
+}
 
 /* Navbar styling */
 .logo {
@@ -75,6 +93,14 @@ p {
 a {
     color: #000; /* Standardlänkfärg */
     font-size: 18px; /* Standardfontstorlek för länkar */
+}
+
+a:active {
+    color: #000 !important; /* Svart färg för aktiva länkar */
+}
+
+.nav-item.active .nav-link {
+    color: #000; /* Byt ut "your-desired-color" mot önskad färg */
 }
 
 .navbar {
@@ -128,7 +154,7 @@ a {
 .product-grid {
     display: grid; /* Använd grid för att layouta produkter */
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Anpassa antalet kolumner beroende på bredden */
-    gap: 20px; /* Avstånd mellan produkter */
+    gap: 50px; /* Avstånd mellan produkter */
 }
 
 .product-item {
@@ -140,8 +166,8 @@ a {
 
 
 .product-image {
-    width: 100%; /* Bredden på produktbilden */
-    height: 200px; /* Höjden på produktbilden */
+    width: 50%; /* Bredden på produktbilden */
+    height: 100px; /* Höjden på produktbilden */
     object-fit: cover; /* Anpassa bilden till rutan utan att förvränga den */
 }
 
@@ -149,6 +175,7 @@ a {
     position: relative; /* Relativ position för produktkortet */
     overflow: hidden; /* Dölj överskjutande innehåll */
     margin: 20px 0; /* Utfyllnad runt produktkortet */
+    overflow: hidden;
 }
 
     .product-card:hover {
@@ -159,14 +186,18 @@ a {
 .thumbnail {
     position: relative; /* Relativ position för thumbnail */
     overflow: visible; /* Synligt innehåll för thumbnail */
-    margin-bottom: 50px; /* Utfyllnad i botten av thumbnail */
+    margin-bottom: 20px; /* Utfyllnad i botten av thumbnail */
+    margin-top: 20px;
+
 }
 
     .thumbnail img {
-        width: 100%; /* Bredden på bilden i thumbnail */
-        height: auto; /* Automatisk höjd för bilden i thumbnail */
+        width: 80%; /* Bredden på bilden i thumbnail */
+        height: 200px; /* Automatisk höjd för bilden i thumbnail */
         max-height: 200px; /* Maximal höjd för bilden i thumbnail */
         transition: transform 0.3s; /* Jämn övergång för transformering vid hover */
+        margin: 0 auto;
+        align-content: center;
     }
 
     .thumbnail:hover img {
@@ -202,20 +233,25 @@ a {
     background-color: #fff; /* Bakgrundsfärg för anpassad knapp */
     border-color: #c48205ce; /* Ramfärg för anpassad knapp */
     color: #000; /* Textfärg för anpassad knapp */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt knappen */
-    padding: 5px 10px; /* Utfyllnad för knappen */
-    font-size: 14px; /* Fontstorlek för knappen */
-    border-radius: 4px; /* Avrunda hörnen på knappen */
+    padding: 5px 10px; /* Justera storlek på knappen */
+    font-size: 16px; /* Justera textstorlek */
+    text-decoration: none !important; /* Ta bort understrykning */
+    display: inline-block; /* Se till att knappen beter sig som en knapp */
+    border-radius: 4px; /* Lägg till rundade hörn */
+    transition: background-color 0.3s; /* Glatthet för färgövergång */
+    border-width: 2px; /* Grövre border */
+    box-shadow: 0 0 5px #c48205ce !important; /* Skugga runt knappen */
 }
 
     .my-custom-button:hover {
-        background-color: #c4820543; /* Bakgrundsfärg för knappen vid hover */
-        border-color: #c48205ce; /* Ramfärg för knappen vid hover */
+        background-color: #a36b0584; /* Bakgrundsfärg för knappen vid hover */
+        border-color: #a36b05; /* Ramfärg för knappen vid hover */
         color: #000; /* Textfärg för knappen vid hover */
+        box-shadow: 0 0 5px #c48205ce !important; /* Skugga runt knappen */
     }
 
 .custom-btn {
-    width: 120px; /* Bredden på anpassad knapp */
+    width: 115px; /* Bredden på anpassad knapp */
     justify-content: center; /* Centrera innehåll horisontellt i anpassad knapp */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt knappen */
     font-size: 16px; /* Fontstorlek för anpassad knapp */
@@ -230,7 +266,7 @@ a {
     max-width: 1200px; /* Maximal bredd för kontaktcontainer */
     margin: 0 auto; /* Centrera kontaktcontainer horisontellt */
     padding: 20px; /* Utfyllnad runt kontaktcontainer */
-    background-color: #f9f9f9; /* Bakgrundsfärg för kontaktcontainer */
+    background-color: #c4820513; /* Bakgrundsfärg för kontaktcontainer */
     border-radius: 10px; /* Avrunda hörnen på kontaktcontainer */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kontaktcontainer */
 }
@@ -269,12 +305,22 @@ iframe {
 }
 
 /* Kundrecensioner */
+.customer-reviews {
+    background-color: #c49b4e1a; /* Bakgrundsfärg för kundrecensioner */
+    padding: 20px; /* Padding runt recensionerna */
+    border-radius: 5px; /* Rundade hörn om önskat */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta rutan */
+    
+}
+
 .review {
     padding: 20px; /* Utfyllnad runt recensioner */
-    background-color: #f8f9fa; /* Bakgrundsfärg för recensioner */
+    background-color: #f5e6cb1d; /* Bakgrundsfärg för recensioner */
     border: 1px solid #dee2e6; /* Ram runt recensioner */
     border-radius: 5px; /* Avrunda hörnen på recensioner */
     text-align: center; /* Centrera text i recensioner */
+    border-color: #c48205ce; /* Färg på border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta rutan */
 }
 
     .review blockquote {
@@ -350,6 +396,51 @@ iframe {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Skugga runt kontaktinformation */
 }
 
+/* Varukorg */
+.table {
+    background-color: #ffffff; /* Bakgrundsfärg för varukorgstabell */
+    border-radius: 5px; /* Avrunda hörnen på varukorgstabell */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Lätt skugga för att lyfta varukorgstabellen */
+    padding: 20px; /* Utfyllnad runt varukorgstabellen */
+    margin-top: 20px; /* Utfyllnad över varukorgstabellen */
+    
+}
+
+    .table th, .table td {
+        padding: 10px; /* Utfyllnad runt tabellceller */
+        border-bottom: 1px solid #dee2e6; /* Linje under varje tabellrad */
+        text-align: left; /* Vänsterjustera text i tabellceller */
+        border-color: #c48205ce;
+    }
+
+    .table th {
+        font-weight: bold; /* Fetstil rubriker */
+    }
+
+    .table tbody tr:last-child td {
+        border-bottom: none; /* Ta bort linje under sista raden i tabellen */
+    }
+
+.cart-custom-btn {
+    background-color: #fff; /* Bakgrundsfärg för anpassad knapp */
+    border-color: #c48205ce; /* Ramfärg för anpassad knapp */
+    color: #000; /* Textfärg för anpassad knapp */
+    padding: 5px 10px; /* Justera storlek på knappen */
+    font-size: 16px; /* Justera textstorlek */
+    text-decoration: none !important; /* Ta bort understrykning */
+    display: inline-block; /* Se till att knappen beter sig som en knapp */
+    border-radius: 4px; /* Lägg till rundade hörn */
+    transition: background-color 0.3s; /* Glatthet för färgövergång */
+    border-width: 2px; /* Grövre border */
+    box-shadow: 0 0 10px #c48205ce !important; /* Skugga runt knappen */
+}
+
+    .cart-custom-btn:hover {
+        background-color: #a36b0584; /* Bakgrundsfärg för knappen vid hover */
+        border-color: #a36b05; /* Ramfärg för knappen vid hover */
+        color: #000; /* Textfärg för knappen vid hover */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1); /* Skugga runt knappen */
+    }
 /* Sidfot */
 .footer {
     position: fixed; /* Fixerad position för sidfoten */
@@ -398,6 +489,13 @@ html {
     .navbar-nav .nav-link {
         font-size: 14px; /* Fontstorlek för navigeringslänkar på mindre skärmar */
         padding: 5px 10px; /* Utfyllnad runt navigeringslänkar på mindre skärmar */
+    }
+}
+
+/* Responsiv design för kundvagnstabellen */
+@media (max-width: 768px) {
+    .table th, .table td {
+        padding: 8px; /* Mindre utfyllnad runt tabellceller på mindre skärmar */
     }
 }
 
