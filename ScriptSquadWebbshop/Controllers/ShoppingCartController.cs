@@ -2,18 +2,23 @@
 using Microsoft.AspNetCore.Http;
 using ScriptSquadWebbshop.Models;
 using ScriptSquadWebbshop.Data;
+using Microsoft.AspNetCore.Identity;
+using NuGet.Packaging.Signing;
 
 namespace ScriptSquadWebbshop.Controllers
 {
     public class ShoppingCartController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
         private List<ShoppingCartItem> _cartItems;
 
-        public ShoppingCartController(ApplicationDbContext context)
+        public ShoppingCartController(ApplicationDbContext context, UserManager<User> userManager )
         {
             _context = context;
+            _userManager = userManager;
 			_cartItems = new List<ShoppingCartItem>();
+            
 		}
 
         public IActionResult Index()
@@ -90,18 +95,24 @@ namespace ScriptSquadWebbshop.Controllers
 
             return RedirectToAction("ViewCart");
         }
-        public IActionResult PurchaseItems()
+        public async Task<IActionResult> PurchaseItems()
         {
             var cartItems = HttpContext.Session.Get<List<ShoppingCartItem>>("Cart") ?? new List<ShoppingCartItem>();
 
+            var order = new Order {OrderDate = DateTime.Now, UserId = _userManager.GetUserId(User)};
+
+            _context.Order.Add(order);
+            _context.SaveChanges();
+       
+
             foreach(var item in cartItems)
             {
-                _context.Purchases.Add(new Purchase
+                _context.ProductOrder.Add(new ProductOrder
                 {
-                    ProductId = item.Product.ProductId,
-                    Quantity = item.Quantity,
-                    PurchaseDate = DateTime.Now,
-                    Total = item.Product.Price * item.Quantity
+                    OrderId = order.OrderId,
+                    ProductId = item.Product.ProductId, 
+                    Amount = item.Quantity,
+                  
                 });
             }
 
